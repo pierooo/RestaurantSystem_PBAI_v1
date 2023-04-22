@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Administracja.Data;
 using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
-        private readonly RestaurantContext _context;
-
-        public CategoryController(RestaurantContext context)
+        public CategoryController(RestaurantContext context, PartialValidator partialvalidator) : base(context, partialvalidator)
         {
-            _context = context;
         }
 
         // GET: Category

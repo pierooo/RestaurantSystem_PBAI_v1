@@ -6,6 +6,7 @@ namespace RestaurantSystem.Administracja.Models.CMS;
 public class Partial : EntityBase
 {
     [MaxLength(50, ErrorMessage = "Tytuł może zawierać max 50 znaków")]
+    [Display(Name = "Nazwa komponentu")]
     public string? Title { get; set; }
     [MaxLength(150, ErrorMessage = "Sub tytuł może zawierać max 150 znaków")]
     public string? SubTitle { get; set; }

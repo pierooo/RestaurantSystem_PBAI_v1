@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Administracja.Data;
 using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
-    public class OpinionPartialController : Controller
+    public class OpinionPartialController : BaseController
     {
-        private readonly RestaurantContext _context;
-
-        public OpinionPartialController(RestaurantContext context)
+        public OpinionPartialController(RestaurantContext context, PartialValidator partialvalidator) : base(context, partialvalidator)
         {
-            _context = context;
         }
 
         // GET: OpinionPartial
@@ -155,14 +150,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.OpinionPartial.Remove(opinionPartial);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OpinionPartialExists(int id)
         {
-          return (_context.OpinionPartial?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.OpinionPartial?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

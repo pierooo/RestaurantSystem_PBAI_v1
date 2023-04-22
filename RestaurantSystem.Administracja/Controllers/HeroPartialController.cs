@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Administracja.Data;
 using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
-    public class HeroPartialController : Controller
+    public class HeroPartialController : BaseController
     {
-        private readonly RestaurantContext _context;
-
-        public HeroPartialController(RestaurantContext context)
+        public HeroPartialController(RestaurantContext context, PartialValidator partialvalidator) : base(context, partialvalidator)
         {
-            _context = context;
         }
 
         // GET: HeroPartial
@@ -155,14 +150,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.HeroPartial.Remove(heroPartial);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool HeroPartialExists(int id)
         {
-          return (_context.HeroPartial?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.HeroPartial?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

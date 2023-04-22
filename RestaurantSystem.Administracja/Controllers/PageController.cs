@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Administracja.Data;
 using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
-    public class PageController : Controller
+    public class PageController : BaseController
     {
-        private readonly RestaurantContext _context;
-
-        public PageController(RestaurantContext context)
+        public PageController(RestaurantContext context, PartialValidator partialvalidator) : base(context, partialvalidator)
         {
-            _context = context;
         }
 
         // GET: Page
         public async Task<IActionResult> Index()
         {
-              return _context.Page != null ? 
-                          View(await _context.Page.ToListAsync()) :
-                          Problem("Entity set 'RestaurantContext.Page'  is null.");
+            IActionResult tmp = _context.Page != null ? View(await _context.Page.ToListAsync()) : Problem("Entity set 'RestaurantContext.Page'  is null.");
+            return tmp;
         }
 
         // GET: Page/Details/5
@@ -150,14 +143,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.Page.Remove(page);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PageExists(int id)
         {
-          return (_context.Page?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Page?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

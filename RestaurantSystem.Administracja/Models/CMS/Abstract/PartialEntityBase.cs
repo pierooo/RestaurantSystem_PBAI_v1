@@ -13,7 +13,7 @@ public abstract class PartialEntityBase : EntityBase
     public string? SubTitle { get; set; }
     [Display(Name = "Podaj jeśli widok tego wymaga")]
     public string? Content { get; set; }
-    [Display(Name = "Częściowy widok do którego będzie należeć tworzona pozycja")]
+    [Display(Name = "Komponent")]
     public int? PartialId { get; set; }
     public Partial? Partial { get; set; }
 }

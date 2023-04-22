@@ -5,18 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Administracja.Data;
 using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
-    public class AboutPartialController : Controller
+    public class AboutPartialController : BaseController
     {
-        private readonly RestaurantContext _context;
-
-        public AboutPartialController(RestaurantContext context)
+        public AboutPartialController(RestaurantContext context, PartialValidator partialvalidator) : base(context, partialvalidator)
         {
-            _context = context;
         }
 
         // GET: AboutPartial
@@ -59,6 +58,8 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PhotoName,RightTitle,RightContent,RightPhotoName,LeftTitle,LeftContent,LeftPhotoName,Title,SubTitle,Content,PartialId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] AboutPartial aboutPartial)
         {
+            partialvalidator.ValidatePartialForNewItem(aboutPartial.PartialId);
+
             if (ModelState.IsValid)
             {
                 _context.Add(aboutPartial);

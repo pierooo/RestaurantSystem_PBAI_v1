@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Administracja.Data;
 using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private readonly RestaurantContext _context;
-
-        public AccountController(RestaurantContext context)
+        public AccountController(RestaurantContext context, PartialValidator partialvalidator) : base(context, partialvalidator)
         {
-            _context = context;
         }
 
         // GET: Account
         public async Task<IActionResult> Index()
         {
-              return _context.Account != null ? 
-                          View(await _context.Account.ToListAsync()) :
-                          Problem("Entity set 'RestaurantContext.Account'  is null.");
+            return _context.Account != null ?
+                        View(await _context.Account.ToListAsync()) :
+                        Problem("Entity set 'RestaurantContext.Account'  is null.");
         }
 
         // GET: Account/Details/5
@@ -150,14 +144,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.Account.Remove(account);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AccountExists(int id)
         {
-          return (_context.Account?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Account?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

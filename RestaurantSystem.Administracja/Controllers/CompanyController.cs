@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Administracja.Data;
 using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
-    public class CompanyController : Controller
+    public class CompanyController : BaseController
     {
-        private readonly RestaurantContext _context;
-
-        public CompanyController(RestaurantContext context)
+        public CompanyController(RestaurantContext context, PartialValidator partialvalidator) : base(context, partialvalidator)
         {
-            _context = context;
         }
 
         // GET: Company
@@ -155,14 +150,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.Company.Remove(company);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CompanyExists(int id)
         {
-          return (_context.Company?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Company?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

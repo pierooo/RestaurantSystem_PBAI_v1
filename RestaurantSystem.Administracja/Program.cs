@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Administracja.Data;
-using Microsoft.Extensions.DependencyInjection;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<RestaurantContext>(options =>
@@ -12,6 +12,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddScoped<PartialValidator>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();

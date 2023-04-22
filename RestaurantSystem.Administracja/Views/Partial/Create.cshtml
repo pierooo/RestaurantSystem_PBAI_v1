@@ -34,8 +34,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PartialType" class="control-label"></label>
-                <input asp-for="PartialType" class="form-control" />
-                <span asp-validation-for="PartialType" class="text-danger"></span>
+                <select asp-for="PartialType" class ="form-control" asp-items="ViewBag.PartialType"></select>
             </div>
             <div class="form-group">
                 <label asp-for="PartialButtonName" class="control-label"></label>

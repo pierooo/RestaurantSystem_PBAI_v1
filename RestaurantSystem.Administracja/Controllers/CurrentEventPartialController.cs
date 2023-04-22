@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Administracja.Data;
 using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
-    public class CurrentEventPartialController : Controller
+    public class CurrentEventPartialController : BaseController
     {
-        private readonly RestaurantContext _context;
-
-        public CurrentEventPartialController(RestaurantContext context)
+        public CurrentEventPartialController(RestaurantContext context, PartialValidator partialvalidator) : base(context, partialvalidator)
         {
-            _context = context;
         }
 
         // GET: CurrentEventPartial
@@ -48,7 +43,7 @@ namespace RestaurantSystem.Administracja.Controllers
         // GET: CurrentEventPartial/Create
         public IActionResult Create()
         {
-            ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Id");
+            ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Title");
             return View();
         }
 
@@ -155,14 +150,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.CurrentEventPartial.Remove(currentEventPartial);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CurrentEventPartialExists(int id)
         {
-          return (_context.CurrentEventPartial?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.CurrentEventPartial?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
