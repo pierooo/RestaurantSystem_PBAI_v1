@@ -1,0 +1,101 @@
+﻿@model IEnumerable<RestaurantSystem.Administracja.Models.CMS.AboutPartial>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RightTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RightContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RightPhotoName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeftTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeftContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeftPhotoName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Partial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotoName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RightTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RightContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RightPhotoName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeftTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeftContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeftPhotoName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Partial.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

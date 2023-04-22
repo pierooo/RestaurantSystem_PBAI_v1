@@ -1,0 +1,73 @@
+﻿@model RestaurantSystem.Administracja.Models.CMS.Account
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Nowe</h1>
+
+<h4>Konto</h4>
+<hr />
+<div class="card-body">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="Notes" class="form-label"></label>
+                    <input asp-for="Notes" class="form-control" />
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="Username" class="form-label"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="Salt" class="form-label"></label>
+                    <input asp-for="Salt" class="form-control" />
+                    <span asp-validation-for="Salt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="true" asp-for="IsEmployee" /> @Html.DisplayNameFor(model => model.IsEmployee)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </form>
+        <a class="btn btn-primary" asp-action="Index">Wróć</a>
+    </div>
+</div>

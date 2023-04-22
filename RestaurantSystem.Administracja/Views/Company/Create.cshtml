@@ -1,0 +1,228 @@
+﻿@model RestaurantSystem.Administracja.Models.CMS.Company
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Company</h4>
+<hr />
+<div class="card-body">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="Description" class="form-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="WebsiteTitlePart" class="form-label"></label>
+                    <input asp-for="WebsiteTitlePart" class="form-control" />
+                    <span asp-validation-for="WebsiteTitlePart" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="TopbarRightTitle" class="form-label"></label>
+                    <input asp-for="TopbarRightTitle" class="form-control" />
+                    <span asp-validation-for="TopbarRightTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="TopBarRightInfo" class="form-label"></label>
+                    <input asp-for="TopBarRightInfo" class="form-control" />
+                    <span asp-validation-for="TopBarRightInfo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="TopbarCenterTitle" class="form-label"></label>
+                    <input asp-for="TopbarCenterTitle" class="form-control" />
+                    <span asp-validation-for="TopbarCenterTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="TopbarLeftTitle" class="form-label"></label>
+                    <input asp-for="TopbarLeftTitle" class="form-control" />
+                    <span asp-validation-for="TopbarLeftTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="TopBarLeftInfo" class="form-label"></label>
+                    <input asp-for="TopBarLeftInfo" class="form-control" />
+                    <span asp-validation-for="TopBarLeftInfo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftBoxTitle" class="form-label"></label>
+                    <input asp-for="FooterLeftBoxTitle" class="form-control" />
+                    <span asp-validation-for="FooterLeftBoxTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftBoxPhotoName" class="form-label"></label>
+                    <input asp-for="FooterLeftBoxPhotoName" class="form-control" />
+                    <span asp-validation-for="FooterLeftBoxPhotoName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftBoxDescription" class="form-label"></label>
+                    <input asp-for="FooterLeftBoxDescription" class="form-control" />
+                    <span asp-validation-for="FooterLeftBoxDescription" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftInfoTitle" class="form-label"></label>
+                    <input asp-for="FooterLeftInfoTitle" class="form-control" />
+                    <span asp-validation-for="FooterLeftInfoTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftInfoAddress" class="form-label"></label>
+                    <input asp-for="FooterLeftInfoAddress" class="form-control" />
+                    <span asp-validation-for="FooterLeftInfoAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftInfoEmail" class="form-label"></label>
+                    <input asp-for="FooterLeftInfoEmail" class="form-control" />
+                    <span asp-validation-for="FooterLeftInfoEmail" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftInfoPhone" class="form-label"></label>
+                    <input asp-for="FooterLeftInfoPhone" class="form-control" />
+                    <span asp-validation-for="FooterLeftInfoPhone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftInfoTwitterLink" class="form-label"></label>
+                    <input asp-for="FooterLeftInfoTwitterLink" class="form-control" />
+                    <span asp-validation-for="FooterLeftInfoTwitterLink" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftInfoFacebookLink" class="form-label"></label>
+                    <input asp-for="FooterLeftInfoFacebookLink" class="form-control" />
+                    <span asp-validation-for="FooterLeftInfoFacebookLink" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterLeftInfoLinkedinLink" class="form-label"></label>
+                    <input asp-for="FooterLeftInfoLinkedinLink" class="form-control" />
+                    <span asp-validation-for="FooterLeftInfoLinkedinLink" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterCenterInfoTitle" class="form-label"></label>
+                    <input asp-for="FooterCenterInfoTitle" class="form-control" />
+                    <span asp-validation-for="FooterCenterInfoTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterRightInfoTitle" class="form-label"></label>
+                    <input asp-for="FooterRightInfoTitle" class="form-control" />
+                    <span asp-validation-for="FooterRightInfoTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterRightInfoDescription" class="form-label"></label>
+                    <input asp-for="FooterRightInfoDescription" class="form-control" />
+                    <span asp-validation-for="FooterRightInfoDescription" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterRightInfoButtonName" class="form-label"></label>
+                    <input asp-for="FooterRightInfoButtonName" class="form-control" />
+                    <span asp-validation-for="FooterRightInfoButtonName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterRightInfoButtonUrl" class="form-label"></label>
+                    <input asp-for="FooterRightInfoButtonUrl" class="form-control" />
+                    <span asp-validation-for="FooterRightInfoButtonUrl" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="FooterBottom" class="form-label"></label>
+                    <input asp-for="FooterBottom" class="form-control" />
+                    <span asp-validation-for="FooterBottom" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="CurrentEventsPartialId" class="form-label"></label>
+                    <select asp-for="CurrentEventsPartialId" class="form-control" asp-items="ViewBag.CurrentEventsPartialId"></select>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-outline mb-3">
+
+                    <label asp-for="ContactPartialId" class="form-label"></label>
+                    <select asp-for="ContactPartialId" class="form-control" asp-items="ViewBag.ContactPartialId"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </form>
+        <a class="btn btn-primary" asp-action="Index">Wróć</a>
+
+    </div>
+</div>
