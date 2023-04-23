@@ -47,6 +47,12 @@ namespace RestaurantSystem.PortalWWW.Controllers
             var partialsEventsIds = partials.Where(x => x.PartialType == PartialTypes.CurrentEvent).Select(x => x.Id).ToList();
             ViewBag.ModelEvents = context.AboutPartial.Where(x => partialsEventsIds.Contains(x.PartialId.Value)).ToList();
 
+            var partialsServicesIds = partials.Where(x => x.PartialType == PartialTypes.Service).Select(x => x.Id).ToList();
+            ViewBag.ModelServices = context.ServicePartial.Where(x => partialsServicesIds.Contains(x.PartialId.Value)).ToList();
+
+            var partialsMenusIds = partials.Where(x => x.PartialType == PartialTypes.CurrentMenu).Select(x => x.Id).ToList();
+            ViewBag.ModelMenus = context.CurrentMenuPartial.Where(x => partialsMenusIds.Contains(x.PartialId.Value)).ToList();
+
             return View(new PageWithPartials(page, partials));
         }
 

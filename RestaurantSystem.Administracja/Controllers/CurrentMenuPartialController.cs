@@ -44,6 +44,7 @@ namespace RestaurantSystem.Administracja.Controllers
         public IActionResult Create()
         {
             ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Set<Product>(), "Id", "Id");
             return View();
         }
 
@@ -61,6 +62,7 @@ namespace RestaurantSystem.Administracja.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Id", currentMenuPartial.PartialId);
+            ViewData["ProductId"] = new SelectList(_context.Set<Product>(), "Id", "Id", currentMenuPartial.ProductId);
             return View(currentMenuPartial);
         }
 

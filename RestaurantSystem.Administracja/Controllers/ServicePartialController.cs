@@ -60,7 +60,7 @@ namespace RestaurantSystem.Administracja.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Id", servicePartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Set<Partial>().Where(x=> x.PartialType == PartialTypes.Service), "Id", "Id", servicePartial.PartialId);
             return View(servicePartial);
         }
 

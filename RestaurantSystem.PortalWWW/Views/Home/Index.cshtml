@@ -47,226 +47,51 @@
 }
 <!-- Hero End -->
 <!-- About Start -->
-@foreach (var aboutPatial in Model.Partials.Where(x => x.PartialType == PartialTypes.About) ?? new List<Partial>())
+@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.About) ?? new List<Partial>())
 {
     <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-        <h2 class="text-primary font-secondary">@aboutPatial.Title</h2>
-        <h1 class="display-4 text-uppercase">@aboutPatial.SubTitle</h1>
+        <h2 class="text-primary font-secondary">@partial.Title</h2>
+        <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
     </div>
-    @await Html.PartialAsync("AboutUs", ((IEnumerable<RestaurantSystem.Data.Data.CMS.AboutPartial>) ViewBag.ModelAbouts).Where(x => x.PartialId == aboutPatial.Id))
+    @await Html.PartialAsync("AboutUs", ((IEnumerable<RestaurantSystem.Data.Data.CMS.AboutPartial>) ViewBag.ModelAbouts).Where(x => x.PartialId == partial.Id))
 }
 
 <!-- About End -->
 <!-- Service Start -->
-<div class="container-fluid service position-relative px-5 mt-5" style="margin-bottom: 135px;">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-primary border-inner text-center text-white p-5">
-                    <h4 class="text-uppercase mb-3">Składniki z całego świata</h4>
-                    <p>Nasze produkty z których wykonujemy przepyszne dania pochodzą z 4 stron świata</p>
+@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Service) ?? new List<Partial>())
+{
+    <div class="container-fluid service position-relative px-5 mt-5" style="margin-bottom: 135px;">
+        <div class="container">
+            <div class="row g-5">
+                @await Html.PartialAsync("Service", ((IEnumerable<RestaurantSystem.Data.Data.CMS.ServicePartial>) ViewBag.ModelServices).Where(x => x.PartialId == partial.Id))
+                <div class="col-lg-12 col-md-6 text-center">
+                    <h1 class="text-uppercase text-light mb-4">@partial.PartialButtonName</h1>
+                    <a href="@partial.PartialButtonUrl" class="btn btn-primary border-inner py-3 px-5">@partial.PartialButtonName</a>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-primary border-inner text-center text-white p-5">
-                    <h4 class="text-uppercase mb-3">Wieloletnie doświadczenie</h4>
-                    <p>Miłość do gastronomii zrodziła się u każdego członka zespołu w młodym wieku.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="bg-primary border-inner text-center text-white p-5">
-                    <h4 class="text-uppercase mb-3">To nasza pasja</h4>
-                    <p>Ciągle rozwijane umiejętności i fantastyczny zespół pozwala nam prowadzić kuchnię na coraz wyższy poziom.</p>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-6 text-center">
-                <h1 class="text-uppercase text-light mb-4">Dlatego warto nas odwiedzić!</h1>
-                <a href="" class="btn btn-primary border-inner py-3 px-5">Rezerwuj stolik teraz</a>
             </div>
         </div>
     </div>
-</div>
+}
+
 <!-- Service End -->
 <!-- Current menu Start -->
-<div class="container-fluid about py-5">
-    <div class="container">
-        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-            <h2 class="text-primary font-secondary">Najbardziej polecane dania</h2>
-            <h1 class="display-4 text-uppercase">Rozkoszuj się w smaku naszych potraw</h1>
-        </div>
-        <div class="tab-class text-center">
-            <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase border-inner p-4 mb-5">
-                <li class="nav-item">
-                    <a class="nav-link text-white active" data-bs-toggle="pill" href="#zupy1">Zupy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-2">Dania główne</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" data-bs-toggle="pill" href="#tab-3">Desery</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div id="zupy1" class="tab-pane fade show p-0 active">
-                    <div class="row g-3">
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa Zupy</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa Zupy</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa Zupy</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa Zupy</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab-2" class="tab-pane fade show p-0">
-                    <div class="row g-3">
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa Dania głównego</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa Dania głównego</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa Dania głównego</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa Dania głównego</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab-3" class="tab-pane fade show p-0">
-                    <div class="row g-3">
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa deseru</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa deseru</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa deseru</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="d-flex h-100">
-                                <div class="flex-shrink-0">
-                                    <img class="img-fluid" src="img/cake-3.jpg" alt="" style="width: 150px; height: 85px;">
-                                    <h4 class="bg-dark text-primary p-2 m-0">$99.00</h4>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                    <h5 class="text-uppercase">Nazwa deseru</h5>
-                                    <span>Opis dlaczego jest na głównej</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.CurrentMenu) ?? new List<Partial>())
+{
+    <div class="container-fluid about py-5">
+        <div class="container">
+            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                <h2 class="text-primary font-secondary">@partial.Title</h2>
+                <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
+            </div>
+            <div class="tab-class text-center">
+                @await Html.PartialAsync("CurrentMenu", ((IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentMenuPartial>) ViewBag.ModelMenus).Where(x => x.PartialId == partial.Id))
+
             </div>
         </div>
     </div>
-</div>
+}
+
+
 <!-- Current menu End -->
 <!-- facts Start -->
 <div class="container-fluid bg-img py-5 mb-5">
