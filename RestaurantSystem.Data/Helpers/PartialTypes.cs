@@ -1,4 +1,4 @@
-﻿namespace RestaurantSystem.Administracja.Models.Helpers;
+﻿namespace RestaurantSystem.Data.Helpers;
 
 public class PartialTypes
 {

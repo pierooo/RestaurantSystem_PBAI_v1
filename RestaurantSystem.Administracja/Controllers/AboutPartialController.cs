@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Administracja.Controllers.Abstract;
-using RestaurantSystem.Administracja.Models.Helpers;
+using RestaurantSystem.Data.Helpers;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
 

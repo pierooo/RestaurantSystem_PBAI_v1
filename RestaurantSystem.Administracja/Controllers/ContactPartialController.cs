@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Administracja.Controllers.Abstract;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
-using RestaurantSystem.Administracja.Models.Helpers;
+using RestaurantSystem.Data.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {

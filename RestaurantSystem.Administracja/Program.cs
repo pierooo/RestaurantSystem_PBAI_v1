@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
-using RestaurantSystem.Administracja.Models.Helpers;
+using RestaurantSystem.Data.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<RestaurantContext>(options =>
