@@ -54,14 +54,23 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Description,WebsiteTitlePart,TopbarRightTitle,TopBarRightInfo,TopBarRightPhotoName,TopbarCenterTitle,TopBarCenterPhotoName,TopbarLeftTitle,TopBarLeftInfo,TopBarLeftPhotoName,FooterLeftBoxTitle,FooterLeftBoxPhotoName,FooterLeftBoxDescription,FooterLeftInfoTitle,FooterLeftInfoAddress,FooterLeftInfoEmail,FooterLeftInfoPhone,FooterLeftInfoTwitterLink,FooterLeftInfoFacebookLink,FooterLeftInfoLinkedinLink,FooterCenterInfoTitle,FooterRightInfoTitle,FooterRightInfoDescription,FooterRightInfoButtonName,FooterRightInfoButtonUrl,FooterBottom,CurrentEventsPartialId,ContactPartialId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] Company company)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(company);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                CommonValidator.AssertCompanyState(_context, company.IsActive);
+                if (ModelState.IsValid)
+                {
+                    _context.Add(company);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["ContactPartialId"] = new SelectList(_context.ContactPartial, "Id", "Discriminator", company.ContactPartialId);
+                return View(company);
             }
-            ViewData["ContactPartialId"] = new SelectList(_context.ContactPartial, "Id", "Discriminator", company.ContactPartialId);
-            return View(company);
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+                return View(company);
+            }
         }
 
         // GET: Company/Edit/5

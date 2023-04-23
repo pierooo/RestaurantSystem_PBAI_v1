@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Piotrunio -</title>
+    <title> @ViewBag.ModelCompany.WebsiteTitlePart - Firma </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -38,22 +38,22 @@
                 <div class="d-inline-flex align-items-center justify-content-center">
                     <i class="bi bi-envelope fs-1 text-primary me-3"></i>
                     <div class="text-start">
-                        <h6 class="text-uppercase mb-1">Napisz do nas</h6>
-                        <span>info@piotrunio.com</span>
+                        <h6 class="text-uppercase mb-1">@ViewBag.ModelCompany.TopbarRightTitle</h6>
+                        <span>@ViewBag.ModelCompany.TopBarRightInfo</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 text-center bg-primary border-inner py-3">
                 <div class="d-inline-flex align-items-center justify-content-center">
-                    <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>Piotrunio</h1>
+                    <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>@ViewBag.ModelCompany.TopbarCenterTitle</h1>
                 </div>
             </div>
             <div class="col-lg-4 text-center bg-secondary py-3">
                 <div class="d-inline-flex align-items-center justify-content-center">
                     <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
                     <div class="text-start">
-                        <h6 class="text-uppercase mb-1">Zadzwoń do nas</h6>
-                        <span>+012 345 6789</span>
+                        <h6 class="text-uppercase mb-1">@ViewBag.ModelCompany.TopbarLeftTitle</h6>
+                        <span>@ViewBag.ModelCompany.TopBarLeftInfo</span>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                @await Html.PartialAsync("Navigation")
+                @await Html.PartialAsync("Navigation", (IEnumerable<RestaurantSystem.Data.Data.CMS.Page>) ViewBag.ModelPage) 
             </div>
         </div>
     </nav>

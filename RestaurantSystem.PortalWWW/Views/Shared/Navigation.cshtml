@@ -1,6 +1,14 @@
-﻿<a href="@Url.Action("Index", "Home")" class="nav-item nav-link">Home</a>
+﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.Page>;
+
+    @foreach (var item in Model)
+        {
+            <a class="nav-item nav-link" href="@Url.Action("Index", "Home", new { id = item.Id })">@item.LinkTitle</a>
+@*            <li>@Html.ActionLink(item.LinkTitle, "Index", "Home", new {id = item.Id}, null)</li>
+*@        }
+
+@*<a href="@Url.Action("Index", "Home")" class="nav-item nav-link">Home</a>
 <a href="@Url.Action("AboutUs", "Home")" class="nav-item nav-link">O Firmie</a>
 <a href="@Url.Action("Menu", "Home")" class="nav-item nav-link">Menu</a>
 <a href="@Url.Action("Events", "Home")" class="nav-item nav-link">Wydarzenia</a>
 <a href="@Url.Action("Booking", "Home")" class="nav-item nav-link">Zarezerwuj stolik</a>
-<a href="@Url.Action("Contact", "Home")" class="nav-item nav-link">Kontakt</a>
+<a href="@Url.Action("Contact", "Home")" class="nav-item nav-link">Kontakt</a>*@

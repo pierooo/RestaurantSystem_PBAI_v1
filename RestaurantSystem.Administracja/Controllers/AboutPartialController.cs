@@ -54,17 +54,6 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PhotoName,RightTitle,RightContent,RightPhotoName,LeftTitle,LeftContent,LeftPhotoName,Title,SubTitle,Content,PartialId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] AboutPartial aboutPartial)
         {
-            //partialvalidator.ValidatePartialForNewItem(aboutPartial.PartialId);
-
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(aboutPartial);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Id", aboutPartial.PartialId);
-            //return View(aboutPartial);
-
             try
             {
                 partialvalidator.ValidatePartialForNewItem(aboutPartial.PartialId);
