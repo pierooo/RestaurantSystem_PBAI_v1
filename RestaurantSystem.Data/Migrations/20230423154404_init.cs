@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace RestaurantSystem.Administracja.Migrations
+namespace RestaurantSystem.Data.Migrations
 {
     public partial class init : Migration
     {

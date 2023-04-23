@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Data.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<RestaurantContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantContext") ?? throw new InvalidOperationException("Connection string 'RestaurantContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace RestaurantSystem.Administracja.Models.CMS.Abstract;
+namespace RestaurantSystem.Data.Data.CMS.Abstract;
 
 public abstract class PartialEntityBase : EntityBase
 {

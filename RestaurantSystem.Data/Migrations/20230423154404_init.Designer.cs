@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestaurantSystem.Administracja.Data;
+using RestaurantSystem.Data.Data;
 
 #nullable disable
 
-namespace RestaurantSystem.Administracja.Migrations
+namespace RestaurantSystem.Data.Migrations
 {
     [DbContext(typeof(RestaurantContext))]
-    [Migration("20230422162821_init")]
+    [Migration("20230423154404_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace RestaurantSystem.Administracja.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("PartialEntityBase");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Account", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -121,7 +121,7 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.ToTable("Account");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Category", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,7 +156,7 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Company", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Company", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -281,7 +281,7 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.ToTable("Company");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Page", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Page", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -326,7 +326,7 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.ToTable("Page");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Partial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Partial", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -379,7 +379,7 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.ToTable("Partial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Product", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -431,9 +431,9 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.AboutPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.AboutPartial", b =>
                 {
-                    b.HasBaseType("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase");
+                    b.HasBaseType("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase");
 
                     b.Property<string>("LeftContent")
                         .HasColumnType("nvarchar(max)");
@@ -459,9 +459,9 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator().HasValue("AboutPartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.ContactPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.ContactPartial", b =>
                 {
-                    b.HasBaseType("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase");
+                    b.HasBaseType("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase");
 
                     b.Property<string>("CompanyDataContent")
                         .HasColumnType("nvarchar(max)");
@@ -499,9 +499,9 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator().HasValue("ContactPartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.CurrentEventPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.CurrentEventPartial", b =>
                 {
-                    b.HasBaseType("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase");
+                    b.HasBaseType("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase");
 
                     b.Property<DateTime?>("EventDate")
                         .HasColumnType("datetime2");
@@ -522,9 +522,9 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator().HasValue("CurrentEventPartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.CurrentMenuPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.CurrentMenuPartial", b =>
                 {
-                    b.HasBaseType("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase");
+                    b.HasBaseType("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase");
 
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
@@ -532,9 +532,9 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator().HasValue("CurrentMenuPartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.FactPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.FactPartial", b =>
                 {
-                    b.HasBaseType("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase");
+                    b.HasBaseType("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase");
 
                     b.Property<long?>("Count")
                         .HasColumnType("bigint");
@@ -542,9 +542,9 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator().HasValue("FactPartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.HeroPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.HeroPartial", b =>
                 {
-                    b.HasBaseType("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase");
+                    b.HasBaseType("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase");
 
                     b.Property<string>("HeroButtonName")
                         .HasColumnType("nvarchar(max)");
@@ -565,9 +565,9 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator().HasValue("HeroPartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.OpinionPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.OpinionPartial", b =>
                 {
-                    b.HasBaseType("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase");
+                    b.HasBaseType("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
@@ -575,9 +575,9 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator().HasValue("OpinionPartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.ServicePartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.ServicePartial", b =>
                 {
-                    b.HasBaseType("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase");
+                    b.HasBaseType("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase");
 
                     b.Property<DateTime?>("EventDate")
                         .HasColumnType("datetime2")
@@ -602,26 +602,26 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.HasDiscriminator().HasValue("ServicePartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Abstract.PartialEntityBase", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Abstract.PartialEntityBase", b =>
                 {
-                    b.HasOne("RestaurantSystem.Administracja.Models.CMS.Partial", "Partial")
+                    b.HasOne("RestaurantSystem.Data.Data.CMS.Partial", "Partial")
                         .WithMany("PartialEntityBases")
                         .HasForeignKey("PartialId");
 
                     b.Navigation("Partial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Company", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Company", b =>
                 {
-                    b.HasOne("RestaurantSystem.Administracja.Models.CMS.ContactPartial", "ContactPartial")
+                    b.HasOne("RestaurantSystem.Data.Data.CMS.ContactPartial", "ContactPartial")
                         .WithMany()
                         .HasForeignKey("ContactPartialId");
 
-                    b.HasOne("RestaurantSystem.Administracja.Models.CMS.CurrentEventPartial", "CurrentEventPartial")
+                    b.HasOne("RestaurantSystem.Data.Data.CMS.CurrentEventPartial", "CurrentEventPartial")
                         .WithMany("Companies")
                         .HasForeignKey("CurrentEventPartialId");
 
-                    b.HasOne("RestaurantSystem.Administracja.Models.CMS.CurrentMenuPartial", null)
+                    b.HasOne("RestaurantSystem.Data.Data.CMS.CurrentMenuPartial", null)
                         .WithMany("Companies")
                         .HasForeignKey("CurrentMenuPartialId");
 
@@ -630,45 +630,45 @@ namespace RestaurantSystem.Administracja.Migrations
                     b.Navigation("CurrentEventPartial");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Partial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Partial", b =>
                 {
-                    b.HasOne("RestaurantSystem.Administracja.Models.CMS.Page", "Page")
+                    b.HasOne("RestaurantSystem.Data.Data.CMS.Page", "Page")
                         .WithMany("Partials")
                         .HasForeignKey("PageId");
 
                     b.Navigation("Page");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Product", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Product", b =>
                 {
-                    b.HasOne("RestaurantSystem.Administracja.Models.CMS.Category", "Category")
+                    b.HasOne("RestaurantSystem.Data.Data.CMS.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Category", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Page", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Page", b =>
                 {
                     b.Navigation("Partials");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.Partial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.Partial", b =>
                 {
                     b.Navigation("PartialEntityBases");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.CurrentEventPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.CurrentEventPartial", b =>
                 {
                     b.Navigation("Companies");
                 });
 
-            modelBuilder.Entity("RestaurantSystem.Administracja.Models.CMS.CurrentMenuPartial", b =>
+            modelBuilder.Entity("RestaurantSystem.Data.Data.CMS.CurrentMenuPartial", b =>
                 {
                     b.Navigation("Companies");
                 });

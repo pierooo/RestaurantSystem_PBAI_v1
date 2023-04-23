@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Administracja.Controllers.Abstract;
-using RestaurantSystem.Administracja.Data;
-using RestaurantSystem.Administracja.Models.CMS;
+using RestaurantSystem.Data.Data;
+using RestaurantSystem.Data.Data.CMS;
 using RestaurantSystem.Administracja.Models.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers

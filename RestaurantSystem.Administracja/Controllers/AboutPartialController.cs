@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Administracja.Controllers.Abstract;
-using RestaurantSystem.Administracja.Data;
-using RestaurantSystem.Administracja.Models.CMS;
 using RestaurantSystem.Administracja.Models.Helpers;
+using RestaurantSystem.Data.Data;
+using RestaurantSystem.Data.Data.CMS;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
@@ -58,16 +54,35 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PhotoName,RightTitle,RightContent,RightPhotoName,LeftTitle,LeftContent,LeftPhotoName,Title,SubTitle,Content,PartialId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] AboutPartial aboutPartial)
         {
-            partialvalidator.ValidatePartialForNewItem(aboutPartial.PartialId);
+            //partialvalidator.ValidatePartialForNewItem(aboutPartial.PartialId);
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(aboutPartial);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Id", aboutPartial.PartialId);
+            //return View(aboutPartial);
+
+            try
             {
-                _context.Add(aboutPartial);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                partialvalidator.ValidatePartialForNewItem(aboutPartial.PartialId);
+
+                if (ModelState.IsValid)
+                {
+                    _context.Add(aboutPartial);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Id", aboutPartial.PartialId);
+                return View(aboutPartial);
             }
-            ViewData["PartialId"] = new SelectList(_context.Set<Partial>(), "Id", "Id", aboutPartial.PartialId);
-            return View(aboutPartial);
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+                return View(aboutPartial);
+            }
         }
 
         // GET: AboutPartial/Edit/5
@@ -156,14 +171,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.AboutPartial.Remove(aboutPartial);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AboutPartialExists(int id)
         {
-          return (_context.AboutPartial?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.AboutPartial?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

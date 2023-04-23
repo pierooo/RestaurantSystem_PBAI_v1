@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantSystem.Administracja.Models.CMS.Abstract;
+namespace RestaurantSystem.Data.Data.CMS.Abstract;
 
 public abstract class EntityBase
 {

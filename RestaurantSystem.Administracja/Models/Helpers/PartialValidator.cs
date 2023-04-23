@@ -1,4 +1,4 @@
-﻿using RestaurantSystem.Administracja.Data;
+﻿using RestaurantSystem.Data.Data;
 
 namespace RestaurantSystem.Administracja.Models.Helpers;
 
@@ -43,15 +43,15 @@ public class PartialValidator
         }
     }
 
-    private void ValidatePartialItemsCount(int? count, string partialType)
+    private void ValidatePartialItemsCount(int? currentCount, string partialType)
     {
         var maxCount = PartialDefinition.GetMaxCount(partialType);
 
-        if (count >= maxCount)
+        if (currentCount < maxCount)
         {
             return;
         }
 
-        throw new ArgumentException($"Partial type {partialType} allow max {maxCount}.");
+        throw new ArgumentException($"Typ komponentu pozwala na dodanie maksymalnie {maxCount} elementów. Edytuj istniejący element w komponencie lub wybierz inny komponent.");
     }
 }

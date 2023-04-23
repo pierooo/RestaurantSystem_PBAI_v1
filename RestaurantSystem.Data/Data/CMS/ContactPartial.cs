@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-using RestaurantSystem.Administracja.Models.CMS.Abstract;
+using RestaurantSystem.Data.Data.CMS.Abstract;
 
-namespace RestaurantSystem.Administracja.Models.CMS;
+namespace RestaurantSystem.Data.Data.CMS;
 
 public class ContactPartial : PartialEntityBase
 {

@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using RestaurantSystem.Administracja.Models.CMS.Abstract;
-using System.ComponentModel.DataAnnotations;
+using RestaurantSystem.Data.Data.CMS.Abstract;
 
-namespace RestaurantSystem.Administracja.Models.CMS;
+namespace RestaurantSystem.Data.Data.CMS;
 
 public class Product : EntityBase
 {

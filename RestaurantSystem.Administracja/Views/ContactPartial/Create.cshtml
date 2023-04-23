@@ -1,4 +1,4 @@
-﻿@model RestaurantSystem.Administracja.Models.CMS.ContactPartial
+﻿@model RestaurantSystem.Data.Data.CMS.ContactPartial
 
 @{
     ViewData["Title"] = "Create";
@@ -116,7 +116,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
