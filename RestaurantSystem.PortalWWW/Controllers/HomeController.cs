@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
 using RestaurantSystem.Data.Data.CMS.Abstract;
+using RestaurantSystem.Data.Helpers;
 using RestaurantSystem.PortalWWW.Models;
 
 namespace RestaurantSystem.PortalWWW.Controllers
@@ -31,6 +33,19 @@ namespace RestaurantSystem.PortalWWW.Controllers
             var page = context.Page.Find(id);
 
             var partials = context.Partial.Where(x => x.PageId == page.Id).ToList();
+
+            var partialsAboutIds = partials.Where(x => x.PartialType == PartialTypes.About).Select(x => x.Id).ToList();
+
+            ViewBag.ModelAbouts = context.AboutPartial.Where(x => partialsAboutIds.Contains(x.PartialId.Value)).ToList();
+
+            var partialsHeroIds = partials.Where(x => x.PartialType == PartialTypes.Hero).Select(x => x.Id).ToList();
+            ViewBag.ModelHeros = context.HeroPartial.Where(x => partialsHeroIds.Contains(x.PartialId.Value)).ToList();
+
+            var partialsContactIds = partials.Where(x => x.PartialType == PartialTypes.Contact).Select(x => x.Id).ToList();
+            ViewBag.ModelContacts = context.ContactPartial.Where(x => partialsContactIds.Contains(x.PartialId.Value)).ToList();
+
+            var partialsEventsIds = partials.Where(x => x.PartialType == PartialTypes.CurrentEvent).Select(x => x.Id).ToList();
+            ViewBag.ModelEvents = context.AboutPartial.Where(x => partialsEventsIds.Contains(x.PartialId.Value)).ToList();
 
             return View(new PageWithPartials(page, partials));
         }

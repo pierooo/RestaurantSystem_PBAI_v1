@@ -16,7 +16,7 @@ public class PartialValidator
         switch (partialType)
         {
             case (PartialTypes.About):
-                ValidatePartialItemsCount(context.AboutPartial.Sum(x => x.PartialId), PartialTypes.About);
+                ValidatePartialItemsCount(context.AboutPartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.About);
                 break;
             case (PartialTypes.Contact):
                 ValidatePartialItemsCount(context.ContactPartial.Sum(x => x.PartialId), PartialTypes.About);
