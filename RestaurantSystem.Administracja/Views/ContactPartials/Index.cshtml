@@ -1,0 +1,125 @@
+﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.ContactPartial>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyDataTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyDataContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactDataTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactDataContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneDataTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneDataContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormButtonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Partial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyDataTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyDataContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactDataTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactDataContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneDataTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneDataContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormButtonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Partial.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

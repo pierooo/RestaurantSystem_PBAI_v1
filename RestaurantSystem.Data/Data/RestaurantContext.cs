@@ -9,7 +9,7 @@ public class RestaurantContext : DbContext
     {
     }
 
-    public DbSet<RestaurantSystem.Data.Data.CMS.Category> Category { get; set; } = default!;
+    public DbSet<RestaurantSystem.Data.Data.CMS.Category> Category { get; set; }
 
     public DbSet<RestaurantSystem.Data.Data.CMS.Product>? Product { get; set; }
 

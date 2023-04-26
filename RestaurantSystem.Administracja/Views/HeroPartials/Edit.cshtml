@@ -1,0 +1,75 @@
+﻿@model RestaurantSystem.Data.Data.CMS.HeroPartial
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>HeroPartial</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubTitle" class="control-label"></label>
+                <input asp-for="SubTitle" class="form-control" />
+                <span asp-validation-for="SubTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhotoName" class="control-label"></label>
+                <input asp-for="PhotoName" class="form-control" />
+                <span asp-validation-for="PhotoName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HeroButtonName" class="control-label"></label>
+                <input asp-for="HeroButtonName" class="form-control" />
+                <span asp-validation-for="HeroButtonName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HeroButtonUrl" class="control-label"></label>
+                <input asp-for="HeroButtonUrl" class="form-control" />
+                <span asp-validation-for="HeroButtonUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VideoTitle" class="control-label"></label>
+                <input asp-for="VideoTitle" class="form-control" />
+                <span asp-validation-for="VideoTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VideoModalTitle" class="control-label"></label>
+                <input asp-for="VideoModalTitle" class="form-control" />
+                <span asp-validation-for="VideoModalTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartialId" class="control-label"></label>
+                <select asp-for="PartialId" class="form-control" asp-items="ViewBag.PartialId"></select>
+                <span asp-validation-for="PartialId" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

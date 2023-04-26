@@ -3,8 +3,17 @@ using RestaurantSystem.Data.Data.CMS.Abstract;
 
 namespace RestaurantSystem.Data.Data.CMS;
 
-public class ContactPartial : PartialEntityBase
+public class ContactPartial : EntityBase
 {
+    [Display(Name = "Podaj jeśli widok tego wymaga")]
+    [MaxLength(50, ErrorMessage = "Tytuł może zawierać max 50 znaków")]
+    public string? Title { get; set; }
+    [Display(Name = "Podaj jeśli widok tego wymaga")]
+    [MaxLength(150, ErrorMessage = "Sub tytuł może zawierać max 150 znaków")]
+    public string? SubTitle { get; set; }
+    [Display(Name = "Podaj jeśli widok tego wymaga")]
+    public string? Content { get; set; }
+
     [Display(Name = "Box lewy - Tytuł")]
     public string? CompanyDataTitle { get; set; }
     [Display(Name = "Box lewy - Treść")]
@@ -27,4 +36,7 @@ public class ContactPartial : PartialEntityBase
     public string? FormContent { get; set; }
     [Display(Name = "Przycisk - Treść")]
     public string? FormButtonName { get; set; }
+    [Display(Name = "Komponent")]
+    public int PartialId { get; set; }
+    public Partial? Partial { get; set; }
 }

@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantSystem.PortalWWW"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantSystem.Administracja", "RestaurantSystem.Administracja\RestaurantSystem.Administracja.csproj", "{218810AD-5BAF-40F6-B015-C1FE12E57F13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantSystem.Data", "RestaurantSystem.Data\RestaurantSystem.Data.csproj", "{3624E8E4-5AA7-415D-A923-4DC2DC952004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantSystem.Data", "RestaurantSystem.Data\RestaurantSystem.Data.csproj", "{3624E8E4-5AA7-415D-A923-4DC2DC952004}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F48CC0A3-F241-4BBC-A379-A9FDF77743B8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

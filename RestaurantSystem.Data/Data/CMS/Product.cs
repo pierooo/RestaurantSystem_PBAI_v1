@@ -17,4 +17,5 @@ public class Product : EntityBase
     public string? PhotoName { get; set; }
     public int? CategoryId { get; set; }
     public Category? Category { get; set; }
+    public List<CurrentMenuPartial>? CurrentMenuPartials { get; set; }
 }

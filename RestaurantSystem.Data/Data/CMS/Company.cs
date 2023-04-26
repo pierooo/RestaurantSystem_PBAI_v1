@@ -60,12 +60,4 @@ public class Company : EntityBase
     public string? FooterRightInfoButtonUrl { get; set; }
     [Display(Name = "Stopka dół - Prawa autorskie")]
     public string? FooterBottom { get; set; }
-    [Display(Name = "Widok bierzących wydarzeń")]
-    public int? CurrentEventsPartialId { get; set; }
-    [Display(Name = "Widok bierzących wydarzeń")]
-    public CurrentEventPartial? CurrentEventPartial { get; set; }
-    [Display(Name = "Widok kontaktu")]
-    public int? ContactPartialId { get; set; }
-    [Display(Name = "Widok kontaktu")]
-    public ContactPartial? ContactPartial { get; set; }
 }

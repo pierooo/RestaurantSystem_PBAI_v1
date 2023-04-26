@@ -1,9 +1,22 @@
-﻿using RestaurantSystem.Data.Data.CMS.Abstract;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+using RestaurantSystem.Data.Data.CMS.Abstract;
 
 namespace RestaurantSystem.Data.Data.CMS;
 
-public class CurrentMenuPartial : PartialEntityBase
+public class CurrentMenuPartial : EntityBase
 {
-    public int? ProductId { get; set; }
-    public List<Company>? Companies { get; set; }
+    [Display(Name = "Podaj jeśli widok tego wymaga")]
+    [MaxLength(50, ErrorMessage = "Tytuł może zawierać max 50 znaków")]
+    public string? Title { get; set; }
+    [Display(Name = "Podaj jeśli widok tego wymaga")]
+    [MaxLength(150, ErrorMessage = "Sub tytuł może zawierać max 150 znaków")]
+    public string? SubTitle { get; set; }
+    [Display(Name = "Podaj jeśli widok tego wymaga")]
+    public string? Content { get; set; }
+    public int ProductId { get; set; }
+    public Product? Product { get; set; }
+    [Display(Name = "Komponent")]
+    public int PartialId { get; set; }
+    public Partial? Partial { get; set; }
 }

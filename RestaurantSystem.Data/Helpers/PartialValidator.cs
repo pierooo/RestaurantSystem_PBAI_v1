@@ -4,13 +4,7 @@ namespace RestaurantSystem.Data.Helpers;
 
 public class PartialValidator
 {
-    private readonly RestaurantContext context;
-    public PartialValidator(RestaurantContext context)
-    {
-        this.context = context;
-    }
-
-    public void ValidatePartialForNewItem(int? partialId)
+    public static void ValidatePartialForNewItem(RestaurantContext context, int? partialId)
     {
         var partialType = context.Partial.Single(x => x.Id == partialId).PartialType;
         switch (partialType)
@@ -19,31 +13,31 @@ public class PartialValidator
                 ValidatePartialItemsCount(context.AboutPartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.About);
                 break;
             case (PartialTypes.Contact):
-                ValidatePartialItemsCount(context.ContactPartial.Sum(x => x.PartialId), PartialTypes.About);
+                ValidatePartialItemsCount(context.ContactPartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.Contact);
                 break;
             case (PartialTypes.CurrentEvent):
-                ValidatePartialItemsCount(context.CurrentEventPartial.Sum(x => x.PartialId), PartialTypes.About);
+                ValidatePartialItemsCount(context.CurrentEventPartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.CurrentEvent);
                 break;
             case (PartialTypes.CurrentMenu):
-                ValidatePartialItemsCount(context.CurrentMenuPartial.Sum(x => x.PartialId), PartialTypes.About);
+                ValidatePartialItemsCount(context.CurrentMenuPartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.CurrentMenu);
                 break;
             case (PartialTypes.Fact):
-                ValidatePartialItemsCount(context.FactPartial.Sum(x => x.PartialId), PartialTypes.About);
+                ValidatePartialItemsCount(context.FactPartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.Fact);
                 break;
             case (PartialTypes.Hero):
-                ValidatePartialItemsCount(context.FactPartial.Sum(x => x.PartialId), PartialTypes.About);
+                ValidatePartialItemsCount(context.FactPartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.Hero);
                 break;
             case (PartialTypes.Opinion):
-                ValidatePartialItemsCount(context.OpinionPartial.Sum(x => x.PartialId), PartialTypes.About);
+                ValidatePartialItemsCount(context.OpinionPartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.Opinion);
                 break;
             case (PartialTypes.Service):
-                ValidatePartialItemsCount(context.ServicePartial.Sum(x => x.PartialId), PartialTypes.About);
+                ValidatePartialItemsCount(context.ServicePartial.Where(x => x.PartialId == partialId).Count(), PartialTypes.Service);
                 break;
             default: throw new ArgumentException($"Not suported Partial Type {partialType}.");
         }
     }
 
-    private void ValidatePartialItemsCount(int? currentCount, string partialType)
+    private static void ValidatePartialItemsCount(int? currentCount, string partialType)
     {
         var maxCount = PartialDefinition.GetMaxCount(partialType);
 

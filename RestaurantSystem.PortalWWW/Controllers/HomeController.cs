@@ -1,16 +1,14 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
-using RestaurantSystem.Data.Data.CMS.Abstract;
-using RestaurantSystem.Data.Helpers;
 using RestaurantSystem.PortalWWW.Models;
 
 namespace RestaurantSystem.PortalWWW.Controllers
 {
     public class HomeController : Controller
-{
+    {
         private readonly RestaurantContext context;
         private readonly ILogger<HomeController> _logger;
 
@@ -20,40 +18,40 @@ namespace RestaurantSystem.PortalWWW.Controllers
             this.context = context;
         }
 
-        public IActionResult Index(int? id)
+        public async Task<IActionResult> Index(int? id)
         {
-            ViewBag.ModelCompany = context.Company.Single(x => x.IsActive);
-            ViewBag.ModelPage = context.Page.Where(x => x.IsActive).OrderBy(x => x.Position).ToList();
+            ViewBag.ModelCompany = await context.Company.SingleOrDefaultAsync(x => x.IsActive);
+            ViewBag.ModelLayoutEvents = await context.Partial.Include(p => p.CurrentEventPartials).FirstOrDefaultAsync(x => x.IsForMainPage == true) ?? new Partial();
+            ViewBag.ModelPage = await context.Page.Where(x => x.IsActive).OrderBy(x => x.Position).ToListAsync();
 
             if (id == null)
             {
-                id = context.Page.First().Id;
+                var firstPage = await context.Page.FirstAsync<Page>();
+                id = firstPage.Id;
             }
 
-            var page = context.Page.Find(id);
+            var page = await context.Page
+                .Include(p => p.Partials.OrderBy(y => y.Position))
+                    .ThenInclude(pt => pt.AboutPartials)
+                .Include(p => p.Partials.OrderBy(y => y.Position))
+                    .ThenInclude(pt => pt.ContactPartials)
+                .Include(p => p.Partials.OrderBy(y => y.Position))
+                    .ThenInclude(pt => pt.CurrentEventPartials)
+                .Include(p => p.Partials.OrderBy(y => y.Position))
+                    .ThenInclude(pt => pt.CurrentMenuPartials)
+                        .ThenInclude(cm => cm.Product)
+                            .ThenInclude(pr => pr.Category)
+                .Include(p => p.Partials.OrderBy(y => y.Position))
+                    .ThenInclude(pt => pt.FactPartials)
+                .Include(p => p.Partials.OrderBy(y => y.Position))
+                    .ThenInclude(pt => pt.HeroPartials)
+                .Include(p => p.Partials.OrderBy(y => y.Position))
+                    .ThenInclude(pt => pt.OpinionPartials)
+                .Include(p => p.Partials.OrderBy(y => y.Position))
+                    .ThenInclude(pt => pt.ServicePartials)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
-            var partials = context.Partial.Where(x => x.PageId == page.Id).ToList();
-
-            var partialsAboutIds = partials.Where(x => x.PartialType == PartialTypes.About).Select(x => x.Id).ToList();
-
-            ViewBag.ModelAbouts = context.AboutPartial.Where(x => partialsAboutIds.Contains(x.PartialId.Value)).ToList();
-
-            var partialsHeroIds = partials.Where(x => x.PartialType == PartialTypes.Hero).Select(x => x.Id).ToList();
-            ViewBag.ModelHeros = context.HeroPartial.Where(x => partialsHeroIds.Contains(x.PartialId.Value)).ToList();
-
-            var partialsContactIds = partials.Where(x => x.PartialType == PartialTypes.Contact).Select(x => x.Id).ToList();
-            ViewBag.ModelContacts = context.ContactPartial.Where(x => partialsContactIds.Contains(x.PartialId.Value)).ToList();
-
-            var partialsEventsIds = partials.Where(x => x.PartialType == PartialTypes.CurrentEvent).Select(x => x.Id).ToList();
-            ViewBag.ModelEvents = context.AboutPartial.Where(x => partialsEventsIds.Contains(x.PartialId.Value)).ToList();
-
-            var partialsServicesIds = partials.Where(x => x.PartialType == PartialTypes.Service).Select(x => x.Id).ToList();
-            ViewBag.ModelServices = context.ServicePartial.Where(x => partialsServicesIds.Contains(x.PartialId.Value)).ToList();
-
-            var partialsMenusIds = partials.Where(x => x.PartialType == PartialTypes.CurrentMenu).Select(x => x.Id).ToList();
-            ViewBag.ModelMenus = context.CurrentMenuPartial.Where(x => partialsMenusIds.Contains(x.PartialId.Value)).ToList();
-
-            return View(new PageWithPartials(page, partials));
+            return View(page);
         }
 
         public IActionResult Privacy()

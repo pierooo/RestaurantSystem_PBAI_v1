@@ -79,15 +79,12 @@
     @RenderBody()
     <!-- Body End -->
     <!-- Current Events Start -->
+    
     <div class="container-fluid py-5">
         <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">Wpadnij do nas na imprezę</h2>
-                <h1 class="display-4 text-uppercase">Nadchodzące wydarzenia</h1>
-            </div>
-            <div class="row g-5">
-                @await Html.PartialAsync("CurrentEvents")
-            </div>
+
+                @await Html.PartialAsync("CurrentEvents", (RestaurantSystem.Data.Data.CMS.Partial) ViewBag.ModelLayoutEvents) 
+
         </div>
     </div>
     <!-- Current Events End -->

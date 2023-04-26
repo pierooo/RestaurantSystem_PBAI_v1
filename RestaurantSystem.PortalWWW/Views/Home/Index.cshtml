@@ -1,6 +1,6 @@
 ﻿@using RestaurantSystem.Data.Data.CMS
 @using RestaurantSystem.Data.Helpers
-@model RestaurantSystem.PortalWWW.Models.PageWithPartials
+@model RestaurantSystem.Data.Data.CMS.Page
 
 <!-- Hero Start -->
 @if (Model.Partials.Any(x => x.PartialType == PartialTypes.Hero))
@@ -47,13 +47,13 @@
 }
 <!-- Hero End -->
 <!-- About Start -->
-@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.About) ?? new List<Partial>())
+@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.About && x.PageId == Model.Id) ?? new List<Partial>())
 {
     <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
         <h2 class="text-primary font-secondary">@partial.Title</h2>
         <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
     </div>
-    @await Html.PartialAsync("AboutUs", ((IEnumerable<RestaurantSystem.Data.Data.CMS.AboutPartial>) ViewBag.ModelAbouts).Where(x => x.PartialId == partial.Id))
+    @await Html.PartialAsync("AboutUs", (IEnumerable<RestaurantSystem.Data.Data.CMS.AboutPartial>) partial.AboutPartials )
 }
 
 <!-- About End -->
@@ -75,7 +75,7 @@
 
 <!-- Service End -->
 <!-- Current menu Start -->
-@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.CurrentMenu) ?? new List<Partial>())
+@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.CurrentMenu && x.PageId == Model.Id) ?? new List<Partial>())
 {
     <div class="container-fluid about py-5">
         <div class="container">
@@ -84,8 +84,7 @@
                 <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
             </div>
             <div class="tab-class text-center">
-                @await Html.PartialAsync("CurrentMenu", ((IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentMenuPartial>) ViewBag.ModelMenus).Where(x => x.PartialId == partial.Id))
-
+                @await Html.PartialAsync("CurrentMenu", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentMenuPartial>) partial.CurrentMenuPartials)
             </div>
         </div>
     </div>

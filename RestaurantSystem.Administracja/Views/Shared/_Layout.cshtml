@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Company" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Companies" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Page" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Pages" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
@@ -63,7 +63,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Partial" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Partials" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
@@ -71,23 +71,47 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="AboutPartial" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="AboutPartials" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
-                        <span class="nav-link-text ms-1">O Firmie</span>
+                        <span class="nav-link-text ms-1">Elementy: O nas</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="CurrentEventPartial" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="CurrentEventPartials" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
-                        <span class="nav-link-text ms-1">Wydarzenia</span>
+                        <span class="nav-link-text ms-1">Elementy: Wydarzenia</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Account" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="ContactPartials" asp-action="Index">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">dashboard</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Elementy: Kontakty</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="ServicePartials" asp-action="Index">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">dashboard</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Elementy: Serwis</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="CurrentMenuPartials" asp-action="Index">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">dashboard</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Elementy: Menu</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Accounts" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
@@ -95,43 +119,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="ContactPartial" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Categories" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
-                        <span class="nav-link-text ms-1">Kontakty</span>
+                        <span class="nav-link-text ms-1">Kategorie dań menu</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="ServicePartial" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Products" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
-                        <span class="nav-link-text ms-1">Serwis</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="CurrentMenuPartial" asp-action="Index">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Menu</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Category" asp-action="Index">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Kategorie menu</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Product" asp-action="Index">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Pozycje menu</span>
+                        <span class="nav-link-text ms-1">Dania</span>
                     </a>
                 </li>
             </ul>
