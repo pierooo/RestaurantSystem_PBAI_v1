@@ -1,12 +1,12 @@
 ﻿@model RestaurantSystem.Data.Data.CMS.Page
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Usuń stronę";
 }
 
-<h1>Delete</h1>
+<h1>Usuń stronę</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Na pewno chcesz usunąć?</h3>
 <div>
     <h4>Page</h4>
     <hr />
@@ -24,28 +24,10 @@
             @Html.DisplayFor(model => model.LinkTitle)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Position)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Position)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsContactPage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsContactPage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsIndexPage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsIndexPage)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IsActive)
@@ -57,7 +39,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-action="Index">Wróć do listy</a>
     </form>
 </div>

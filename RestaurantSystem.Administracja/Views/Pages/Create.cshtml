@@ -1,12 +1,12 @@
 ﻿@model RestaurantSystem.Data.Data.CMS.Page
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Strony";
 }
 
-<h1>Create</h1>
+<h1>Dodaj nową stronę</h1>
 
-<h4>Page</h4>
+<h4>Po dodaniu strony należy dodać do niej komponenty i elementy.</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,24 +23,9 @@
                 <span asp-validation-for="LinkTitle" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Position" class="control-label"></label>
                 <input asp-for="Position" class="form-control" />
                 <span asp-validation-for="Position" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsContactPage" /> @Html.DisplayNameFor(model => model.IsContactPage)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsIndexPage" /> @Html.DisplayNameFor(model => model.IsIndexPage)
-                </label>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -48,12 +33,12 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Wróć do listy</a>
 </div>

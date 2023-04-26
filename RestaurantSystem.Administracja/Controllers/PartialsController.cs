@@ -49,7 +49,7 @@ namespace RestaurantSystem.Administracja.Controllers
         // GET: Partials/Create
         public IActionResult Create()
         {
-            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Id");
+            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Title");
             var partialTypes = new PartialTypes().GetForSelector();
             ViewData["PartialType"] = new SelectList(partialTypes, "Value", "Key");
             return View();
@@ -68,7 +68,7 @@ namespace RestaurantSystem.Administracja.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Id", @partial.PageId);
+            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Title", @partial.PageId);
             var partialTypes = new PartialTypes().GetForSelector();
             ViewData["PartialType"] = new SelectList(partialTypes, "Value", "Key", @partial.PartialType);
             return View(@partial);
@@ -87,7 +87,7 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 return NotFound();
             }
-            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Id", @partial.PageId);
+            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Title", @partial.PageId);
             var partialTypes = new PartialTypes().GetForSelector();
             ViewData["PartialType"] = new SelectList(partialTypes, "Value", "Key", @partial.PartialType);
             return View(@partial);
@@ -125,7 +125,7 @@ namespace RestaurantSystem.Administracja.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Id", @partial.PageId);
+            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Title", @partial.PageId);
             var partialTypes = new PartialTypes().GetForSelector();
             ViewData["PartialType"] = new SelectList(partialTypes, "Value", "Key", @partial.PartialType);
             return View(@partial);

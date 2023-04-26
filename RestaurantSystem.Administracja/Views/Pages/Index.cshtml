@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.Page>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "";
 }
 
-<h1>Index</h1>
+<h1>Strony w aplikacji</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj</a>
 </p>
 <table class="table">
     <thead>
@@ -19,16 +19,7 @@
                 @Html.DisplayNameFor(model => model.LinkTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Position)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsContactPage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsIndexPage)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
@@ -46,24 +37,14 @@
                 @Html.DisplayFor(modelItem => item.LinkTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsContactPage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsIndexPage)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
             </td>
         </tr>
 }

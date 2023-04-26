@@ -1,12 +1,13 @@
 ﻿@model RestaurantSystem.Data.Data.CMS.Partial
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj komponent";
 }
 
-<h1>Edit</h1>
+<h1>Edytuj</h1>
 
-<h4>Partial</h4>
+<h4>Obowiązkowy tytuł dla komponentów typu: O nas, Serwis, Menu, Opinie </h4>
+<h4>Obowiązkowy podtytuł dla komponentów typu: O nas, Menu </h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -28,28 +29,8 @@
                 <span asp-validation-for="SubTitle" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsForMainPage" class="control-label"></label>
-                <input asp-for="IsForMainPage" class="form-control" />
-                <span asp-validation-for="IsForMainPage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="PartialType" class="control-label"></label>
                 <select asp-for="PartialType" class ="form-control" asp-items="ViewBag.PartialType"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PartialButtonName" class="control-label"></label>
-                <input asp-for="PartialButtonName" class="form-control" />
-                <span asp-validation-for="PartialButtonName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PartialButtonUrl" class="control-label"></label>
-                <input asp-for="PartialButtonUrl" class="form-control" />
-                <span asp-validation-for="PartialButtonUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Position" class="control-label"></label>
@@ -68,12 +49,12 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Wróć do listy</a>
 </div>
