@@ -1,12 +1,10 @@
 ﻿@model RestaurantSystem.Data.Data.CMS.Account
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodaj konto";
 }
 
-<h1>Create</h1>
-
-<h4>Account</h4>
+<h1>Dodaj nowe konto</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -34,13 +32,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="form-control" type="password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Salt" class="control-label"></label>
-                <input asp-for="Salt" class="form-control" />
-                <span asp-validation-for="Salt" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -53,12 +46,12 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Wróć do listy</a>
 </div>

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.Account>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Użytkownicy";
 }
 
-<h1>Index</h1>
+<h1>Użytkownicy</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj</a>
 </p>
 <table class="table">
     <thead>
@@ -23,12 +23,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Username)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Salt)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsEmployee)
@@ -55,21 +49,14 @@
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salt)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.IsEmployee)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
             </td>
         </tr>
 }

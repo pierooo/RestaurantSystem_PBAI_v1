@@ -26,17 +26,18 @@ public class ContactPartial : EntityBase
     public string? PhoneDataTitle { get; set; }
     [Display(Name = "Box prawy - Treść")]
     public string? PhoneDataContent { get; set; }
-    [Display(Name = "Texbox 1 - Treść")]
+    [Display(Name = "Formularz 1 - Treść")]
     public string? FormName { get; set; }
-    [Display(Name = "Texbox 2 - Treść")]
+    [Display(Name = "Formularz 2 - Treść")]
     public string? FormEmail { get; set; }
-    [Display(Name = "Texbox 3 - Treść")]
+    [Display(Name = "Formularz 3 - Treść")]
     public string? FormTitle { get; set; }
-    [Display(Name = "Texbox 4 - Treść")]
+    [Display(Name = "Formularz 4 - Treść")]
     public string? FormContent { get; set; }
-    [Display(Name = "Przycisk - Treść")]
+    [Display(Name = "Formularz - Przycisk")]
     public string? FormButtonName { get; set; }
     [Display(Name = "Komponent")]
     public int PartialId { get; set; }
+    [Display(Name = "Komponent")]
     public Partial? Partial { get; set; }
 }

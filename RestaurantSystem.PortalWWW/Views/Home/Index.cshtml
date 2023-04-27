@@ -57,6 +57,16 @@
 }
 
 <!-- About End -->
+<!-- Contact Start -->
+@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Contact && x.PageId == Model.Id) ?? new List<Partial>())
+{
+    <div class="container-fluid contact position-relative px-5" style="margin-top: 90px;">
+        <div class="container">
+            @await Html.PartialAsync("Contact", (IEnumerable<RestaurantSystem.Data.Data.CMS.ContactPartial>) partial.ContactPartials )
+        </div>
+    </div>
+}
+<!-- Contact End -->
 <!-- Service Start -->
 @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Service) ?? new List<Partial>())
 {
@@ -71,6 +81,8 @@
         </div>
     </div>
 }
+
+
 
 <!-- Service End -->
 <!-- Current menu Start -->

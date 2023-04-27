@@ -51,6 +51,23 @@ namespace RestaurantSystem.PortalWWW.Controllers
                     .ThenInclude(pt => pt.ServicePartials)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
+            page = new Page()
+            {
+                Content = page.Content,
+                CreatedAt = page.CreatedAt,
+                UpdatedAt = page.UpdatedAt,
+                IsContactPage = page.IsContactPage,
+                IsIndexPage = page.IsIndexPage,
+                IsActive = page.IsActive,
+                Title = page.Title,
+                LinkTitle = page.LinkTitle,
+                Position = page.Position,
+                Id = page.Id,
+                UpdatedById = page.UpdatedById,
+                Partials = page.Partials?.OrderBy(x => x.Position).ToList()
+
+            };
+
             return View(page);
         }
 

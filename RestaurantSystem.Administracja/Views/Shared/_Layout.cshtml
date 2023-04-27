@@ -73,68 +73,70 @@
                 <li class="nav-item">
                     <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="AboutPartials" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
+                            <i class="material-icons opacity-10">accessibility</i>
                         </div>
                         <span class="nav-link-text ms-1">Elementy: O nas</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="CurrentEventPartials" asp-action="Index">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Elementy: Wydarzenia</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="ContactPartials" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
+                            <i class="material-icons opacity-10">accessibility</i>
                         </div>
                         <span class="nav-link-text ms-1">Elementy: Kontakty</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="ServicePartials" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="CurrentEventPartials" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
+                            <i class="material-icons opacity-10">accessibility</i>
                         </div>
-                        <span class="nav-link-text ms-1">Elementy: Serwis</span>
+                        <span class="nav-link-text ms-1">Elementy: Wydarzenia</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="CurrentMenuPartials" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
+                            <i class="material-icons opacity-10">accessibility</i>
                         </div>
                         <span class="nav-link-text ms-1">Elementy: Menu</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Accounts" asp-action="Index">
+                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="ServicePartials" asp-action="Index">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
+                            <i class="material-icons opacity-10">accessibility</i>
                         </div>
-                        <span class="nav-link-text ms-1">Użytkownicy</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Categories" asp-action="Index">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Kategorie dań menu</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" asp-area="" asp-controller="Products" asp-action="Index">
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
-                        </div>
-                        <span class="nav-link-text ms-1">Dania</span>
+                        <span class="nav-link-text ms-1">Elementy: Serwis</span>
                     </a>
                 </li>
             </ul>
+        </div>
+        <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+            <div class="mx-3">
+                <a class="btn bg-gradient-primary mt-0 w-100" asp-area="" asp-controller="Categories" asp-action="Index">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">room</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Kategorie</span>
+                </a>
+            </div>
+            <div class="mx-3">
+                <a class="btn bg-gradient-primary mt-0 w-100" asp-area="" asp-controller="Products" asp-action="Index">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">restaurant_menu</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Dania</span>
+                </a>
+            </div>
+            <div class="mx-3">
+                <a class="btn bg-gradient-primary mt-0 w-100" asp-area="" asp-controller="Accounts" asp-action="Index">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">person</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Użytkownicy</span>
+                </a>
+            </div>
         </div>
     </aside>
     <!-- Navbar End-->

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
+using RestaurantSystem.Data.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
@@ -48,7 +49,7 @@ namespace RestaurantSystem.Administracja.Controllers
         // GET: ContactPartials/Create
         public IActionResult Create()
         {
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id");
+            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Name");
             return View();
         }
 
@@ -59,13 +60,21 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,SubTitle,Content,CompanyDataTitle,CompanyDataContent,ContactDataTitle,ContactDataContent,PhoneDataTitle,PhoneDataContent,FormName,FormEmail,FormTitle,FormContent,FormButtonName,PartialId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] ContactPartial contactPartial)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(contactPartial);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                PartialValidator.ValidatePartialForNewItem(_context, contactPartial.PartialId);
+                if (ModelState.IsValid)
+                {
+                    _context.Add(contactPartial);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", contactPartial.PartialId);
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+            }
+            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Name", contactPartial.PartialId);
             return View(contactPartial);
         }
 
@@ -82,7 +91,7 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 return NotFound();
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", contactPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Name", contactPartial.PartialId);
             return View(contactPartial);
         }
 
@@ -102,8 +111,10 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 try
                 {
+                    PartialValidator.ValidatePartialForNewItem(_context, contactPartial.PartialId);
                     _context.Update(contactPartial);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,9 +127,12 @@ namespace RestaurantSystem.Administracja.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                catch (ArgumentException ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+                }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", contactPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Name", contactPartial.PartialId);
             return View(contactPartial);
         }
 

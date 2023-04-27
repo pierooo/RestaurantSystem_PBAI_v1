@@ -1,32 +1,17 @@
 ﻿@model RestaurantSystem.Data.Data.CMS.ContactPartial
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodaj kontakt";
 }
 
-<h1>Create</h1>
+<h1>Dodaj kontakt</h1>
 
-<h4>ContactPartial</h4>
+<h4>Dodaj kontakt dla komponentu</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SubTitle" class="control-label"></label>
-                <input asp-for="SubTitle" class="form-control" />
-                <span asp-validation-for="SubTitle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="CompanyDataTitle" class="control-label"></label>
                 <input asp-for="CompanyDataTitle" class="form-control" />
@@ -92,12 +77,12 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Wróć do listy</a>
 </div>
