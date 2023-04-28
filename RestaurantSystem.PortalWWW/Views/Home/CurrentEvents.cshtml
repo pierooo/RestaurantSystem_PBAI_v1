@@ -1,36 +1,28 @@
 ﻿@using RestaurantSystem.Data.Data.CMS
-@model RestaurantSystem.Data.Data.CMS.Partial;
+@model IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentEventPartial>
 
-<!-- Events Start -->
-
-<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-    <h2 class="text-primary font-secondary">@Model.Title</h2>
-    <h1 class="display-4 text-uppercase">@Model.SubTitle</h1>
-</div>
-
-<div class="row g-5">
-
-    @foreach (var currentEvent in Model.CurrentEventPartials ?? new List<CurrentEventPartial>())
-    {
-        <div class="col-lg-4 col-md-6">
-            <div class="team-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="~/lib/img/@currentEvent.PhotoName" alt="">
-                    <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                        <div class="d-flex align-items-center justify-content-start">
-                            <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="@currentEvent.FacebookLink"><i class="fab fa-facebook-f fw-normal"></i></a>
-                            <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="@currentEvent.LinkedinLink"><i class="fab fa-linkedin-in fw-normal"></i></a>
+@if (Model is not null && Model.Any())
+{
+    <!-- Events Start -->
+        @foreach (var currentEvent in Model)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="~/lib/img/@currentEvent.PhotoName" alt="">
+                        <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="@currentEvent.FacebookLink"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 mx-1" href="@currentEvent.LinkedinLink"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-dark border-inner text-center p-4">
-                    <h4 class="text-uppercase text-primary">@currentEvent.EventDate</h4>
-                    <p class="text-white m-0">@currentEvent.Content</p>
+                    <div class="bg-dark border-inner text-center p-4">
+                        <h4 class="text-uppercase text-primary">@currentEvent.EventDate</h4>
+                        <p class="text-white m-0">@currentEvent.EventInfo</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-
-</div>
-
-<!-- Events End -->
+        }
+    <!-- Events End -->
+}

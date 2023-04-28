@@ -2,7 +2,9 @@
 @using RestaurantSystem.Data.Helpers
 @model RestaurantSystem.Data.Data.CMS.Page
 
-<!-- Hero Start -->
+@if (Model is not null)
+{
+    @*<!-- Hero Start -->
 @if (Model.Partials.Any(x => x.PartialType == PartialTypes.Hero))
 {
     <div class="container-fluid bg-primary py-5 mb-5 hero-header">
@@ -45,66 +47,83 @@
     </div>
     <!-- Video Modal End -->
 }
-<!-- Hero End -->
-<!-- About Start -->
-@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.About && x.PageId == Model.Id) ?? new List<Partial>())
-{
-    <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-        <h2 class="text-primary font-secondary">@partial.Title</h2>
-        <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
-    </div>
-    @await Html.PartialAsync("AboutUs", (IEnumerable<RestaurantSystem.Data.Data.CMS.AboutPartial>) partial.AboutPartials )
-}
-
-<!-- About End -->
-<!-- Contact Start -->
-@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Contact && x.PageId == Model.Id) ?? new List<Partial>())
-{
-    <div class="container-fluid contact position-relative px-5" style="margin-top: 90px;">
-        <div class="container">
-            @await Html.PartialAsync("Contact", (IEnumerable<RestaurantSystem.Data.Data.CMS.ContactPartial>) partial.ContactPartials )
+<!-- Hero End -->*@
+    <!-- About Start -->
+    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.About && x.PageId == Model.Id) ?? new List<Partial>())
+    {
+        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+            <h2 class="text-primary font-secondary">@partial.Title</h2>
+            <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
         </div>
-    </div>
-}
-<!-- Contact End -->
-<!-- Service Start -->
-@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Service) ?? new List<Partial>())
-{
-    <div class="container-fluid service position-relative px-5 mt-5" style="margin-bottom: 135px;">
-        <div class="container">
-            <div class="row g-5">
-                @await Html.PartialAsync("Service", ((IEnumerable<RestaurantSystem.Data.Data.CMS.ServicePartial>) ViewBag.ModelServices).Where(x => x.PartialId == partial.Id))
-                <div class="col-lg-12 col-md-6 text-center">
-                    <h1 class="text-uppercase text-light mb-4">@partial.Title</h1>
+        @await Html.PartialAsync("AboutUs", (IEnumerable<RestaurantSystem.Data.Data.CMS.AboutPartial>) partial.AboutPartials )
+    }
+
+    <!-- About End -->
+    <!-- Contact Start -->
+    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Contact && x.PageId == Model.Id) ?? new List<Partial>())
+    {
+        <div class="container-fluid contact position-relative px-5" style="margin-top: 90px;">
+            <div class="container">
+                @await Html.PartialAsync("Contact", (IEnumerable<RestaurantSystem.Data.Data.CMS.ContactPartial>) partial.ContactPartials )
+            </div>
+        </div>
+    }
+    <!-- Contact End -->
+    <!-- Current Events Start -->
+    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.CurrentEvent && x.PageId == Model.Id) ?? new List<Partial>())
+    {
+        <!-- Events Start -->
+        <div class="container-fluid py-5">
+            <div class="container">
+                <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                    <h2 class="text-primary font-secondary">@partial.Title</h2>
+                    <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
+                </div>
+                <div class="row g-5">
+                    @await Html.PartialAsync("CurrentEvents", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentEventPartial>) partial.CurrentEventPartials )
                 </div>
             </div>
         </div>
-    </div>
-}
+    }
 
-
-
-<!-- Service End -->
-<!-- Current menu Start -->
-@foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.CurrentMenu && x.PageId == Model.Id) ?? new List<Partial>())
-{
-    <div class="container-fluid about py-5">
-        <div class="container">
-            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                <h2 class="text-primary font-secondary">@partial.Title</h2>
-                <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
-            </div>
-            <div class="tab-class text-center">
-                @await Html.PartialAsync("CurrentMenu", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentMenuPartial>) partial.CurrentMenuPartials)
+    <!-- Current Events End -->
+    <!-- Service Start -->
+    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Service) ?? new List<Partial>())
+    {
+        <div class="container-fluid service position-relative px-5 mt-5" style="margin-bottom: 135px;">
+            <div class="container">
+                <div class="row g-5">
+                    @await Html.PartialAsync("Service", ((IEnumerable<RestaurantSystem.Data.Data.CMS.ServicePartial>) ViewBag.ModelServices).Where(x => x.PartialId == partial.Id))
+                    <div class="col-lg-12 col-md-6 text-center">
+                        <h1 class="text-uppercase text-light mb-4">@partial.Title</h1>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
 
 
-<!-- Current menu End -->
-<!-- facts Start -->
-<div class="container-fluid bg-img py-5 mb-5">
+    <!-- Service End -->
+    <!-- Current menu Start -->
+    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.CurrentMenu && x.PageId == Model.Id) ?? new List<Partial>())
+    {
+        <div class="container-fluid about py-5">
+            <div class="container">
+                <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                    <h2 class="text-primary font-secondary">@partial.Title</h2>
+                    <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
+                </div>
+                <div class="tab-class text-center">
+                    @await Html.PartialAsync("CurrentMenu", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentMenuPartial>) partial.CurrentMenuPartials)
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <!-- Current menu End -->
+    <!-- facts Start -->
+    @*<div class="container-fluid bg-img py-5 mb-5">
     <div class="container py-5">
         <div class="row gx-5 gy-4">
             <div class="col-lg-3 col-md-6">
@@ -225,4 +244,5 @@
         </div>
     </div>
 </div>
-<!-- Opinie End -->
+<!-- Opinie End -->*@
+}

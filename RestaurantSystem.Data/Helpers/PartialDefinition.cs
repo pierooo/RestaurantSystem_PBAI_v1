@@ -24,6 +24,9 @@ public class PartialDefinition
             case PartialTypes.Service:
                 return 3;
                 break;
+            case PartialTypes.LayoutEvents:
+                return 3;
+                break;
             default: return int.MaxValue;
         }
     }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
 using RestaurantSystem.Data.Helpers;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
@@ -62,16 +63,29 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Title,SubTitle,Content,IsForMainPage,PartialType,PartialButtonName,PartialButtonUrl,Position,PageId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] Partial @partial)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(@partial);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                CommonValidator.AssertLayoutPartial(_context, @partial.IsActive);
+
+                if (ModelState.IsValid)
+                {
+                    _context.Add(@partial);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["PageId"] = new SelectList(_context.Page, "Id", "Title", @partial.PageId);
+                var partialTypes = new PartialTypes().GetForSelector();
+                ViewData["PartialType"] = new SelectList(partialTypes, "Value", "Key", @partial.PartialType);
+                return View(@partial);
             }
-            ViewData["PageId"] = new SelectList(_context.Page, "Id", "Title", @partial.PageId);
-            var partialTypes = new PartialTypes().GetForSelector();
-            ViewData["PartialType"] = new SelectList(partialTypes, "Value", "Key", @partial.PartialType);
-            return View(@partial);
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+                ViewData["PageId"] = new SelectList(_context.Page, "Id", "Title", @partial.PageId);
+                var partialTypes = new PartialTypes().GetForSelector();
+                ViewData["PartialType"] = new SelectList(partialTypes, "Value", "Key", @partial.PartialType);
+                return View(@partial);
+            }
         }
 
         // GET: Partials/Edit/5
@@ -164,14 +178,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.Partial.Remove(@partial);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PartialExists(int id)
         {
-          return (_context.Partial?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Partial?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -10,6 +10,7 @@ public class PartialTypes
     public const string Hero = "Hero";
     public const string Opinion = "Opinion";
     public const string Service = "Service";
+    public const string LayoutEvents = "LayoutEvents";
 
     public List<string> Get()
     {
@@ -36,6 +37,7 @@ public class PartialTypes
         new KeyAndValue("Komponent ze zdjęciem", Hero),
         new KeyAndValue("Komponent dla opinii", Opinion),
         new KeyAndValue("Komponent z trzema boxami", Service),
+        new KeyAndValue("Komponent dla wydarzeń dla wszystkich stron", LayoutEvents)
         };
     }
 }

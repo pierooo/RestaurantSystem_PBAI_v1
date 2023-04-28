@@ -1,4 +1,5 @@
-﻿@model RestaurantSystem.Data.Data.CMS.Partial
+﻿@using RestaurantSystem.Data.Helpers
+@model RestaurantSystem.Data.Data.CMS.Partial
 
 @{
     ViewData["Title"] = "Create";
@@ -6,8 +7,8 @@
 
 <h1>Dodaj nowy komponent</h1>
 
-<h4>Obowiązkowy tytuł dla komponentów typu: O nas, Serwis, Menu, Opinie </h4>
-<h4>Obowiązkowy podtytuł dla komponentów typu: O nas, Menu </h4>
+<h4>Obowiązkowy tytuł dla komponentów typu: O nas, Serwis, Menu, Opinie, Wydarzenia </h4>
+<h4>Obowiązkowy podtytuł dla komponentów typu: O nas, Menu, Wydarzenia </h4>
 
 <hr />
 <div class="row">
@@ -31,8 +32,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="PartialType" class="control-label"></label>
-                <select asp-for="PartialType" class ="form-control" asp-items="ViewBag.PartialType"></select>
+                <select asp-for="PartialType" class="form-control" asp-items="ViewBag.PartialType"></select>
             </div>
+
             <div class="form-group">
                 <label asp-for="Position" class="control-label"></label>
                 <input asp-for="Position" class="form-control" />
@@ -40,8 +42,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="PageId" class="control-label"></label>
-                <select asp-for="PageId" class ="form-control" asp-items="ViewBag.PageId"></select>
+                <select asp-for="PageId" class="form-control" asp-items="ViewBag.PageId"></select>
             </div>
+
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
@@ -57,3 +61,26 @@
 <div>
     <a asp-action="Index">Wróć do listy</a>
 </div>
+<script>
+    const positionField = document.querySelector('#Position');
+    const positionLabel = document.querySelector('label[for="Position"]');
+    const pageIdField = document.querySelector('#PageId');
+    const pageIdLabel = document.querySelector('label[for="PageId"]');
+
+    const partialTypeField = document.querySelector('#PartialType');
+    partialTypeField.addEventListener('change', (event) => {
+        const selectedValue = event.target.value;
+
+        if (selectedValue === 'LayoutEvents') {
+            positionField.style.display = 'none';
+            positionLabel.setAttribute('hidden', true);
+            pageIdField.style.display = 'none';
+            pageIdLabel.setAttribute('hidden', true);
+        } else {
+            positionField.style.display = 'block';
+            positionLabel.removeAttribute('hidden');
+            pageIdField.style.display = 'block';
+            pageIdLabel.removeAttribute('hidden');
+        }
+    });
+</script>

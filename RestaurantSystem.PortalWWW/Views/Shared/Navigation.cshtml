@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.Page>;
 
-@foreach (var item in Model)
+@if (Model is not null)
 {
-    <a class="nav-item nav-link" href="@Url.Action("Index", "Home", new { id = item.Id })">@item.LinkTitle</a>
+    @foreach (var item in Model)
+    {
+        <a class="nav-item nav-link" href="@Url.Action("Index", "Home", new { id = item.Id })">@item.LinkTitle</a>
+    }
 }

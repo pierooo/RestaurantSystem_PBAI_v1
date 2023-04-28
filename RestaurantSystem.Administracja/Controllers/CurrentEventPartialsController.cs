@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
+using RestaurantSystem.Data.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
@@ -48,7 +49,7 @@ namespace RestaurantSystem.Administracja.Controllers
         // GET: CurrentEventPartials/Create
         public IActionResult Create()
         {
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id");
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.CurrentEvent || x.PartialType == PartialTypes.LayoutEvents), "Id", "Name");
             return View();
         }
 
@@ -59,13 +60,21 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,SubTitle,Content,PhotoName,EventDate,EventInfo,FacebookLink,LinkedinLink,PartialId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] CurrentEventPartial currentEventPartial)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(currentEventPartial);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                PartialValidator.ValidatePartialForNewItem(_context, currentEventPartial.PartialId);
+                if (ModelState.IsValid)
+                {
+                    _context.Add(currentEventPartial);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", currentEventPartial.PartialId);
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+            }
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.CurrentEvent || x.PartialType == PartialTypes.LayoutEvents), "Id", "Name", currentEventPartial.PartialId);
             return View(currentEventPartial);
         }
 
@@ -82,7 +91,7 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 return NotFound();
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", currentEventPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.CurrentEvent || x.PartialType == PartialTypes.LayoutEvents), "Id", "Name", currentEventPartial.PartialId);
             return View(currentEventPartial);
         }
 
@@ -102,8 +111,10 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 try
                 {
+                    PartialValidator.ValidatePartialForNewItem(_context, currentEventPartial.PartialId);
                     _context.Update(currentEventPartial);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,9 +127,12 @@ namespace RestaurantSystem.Administracja.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                catch (ArgumentException ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+                }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", currentEventPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.CurrentEvent || x.PartialType == PartialTypes.LayoutEvents), "Id", "Name", currentEventPartial.PartialId);
             return View(currentEventPartial);
         }
 

@@ -70,7 +70,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                @await Html.PartialAsync("Navigation", (IEnumerable<RestaurantSystem.Data.Data.CMS.Page>) ViewBag.ModelPage) 
+                @await Html.PartialAsync("Navigation", (IEnumerable<RestaurantSystem.Data.Data.CMS.Page>) ViewBag.ModelPage)
             </div>
         </div>
     </nav>
@@ -79,12 +79,11 @@
     @RenderBody()
     <!-- Body End -->
     <!-- Current Events Start -->
-    
     <div class="container-fluid py-5">
         <div class="container">
-
-                @await Html.PartialAsync("CurrentEvents", (RestaurantSystem.Data.Data.CMS.Partial) ViewBag.ModelLayoutEvents) 
-
+            <div class="row g-5">
+                    @await Html.PartialAsync("CurrentEvents", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentEventPartial>) ViewBag.ModelLayoutEvents)
+            </div>
         </div>
     </div>
     <!-- Current Events End -->
@@ -122,7 +121,9 @@
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                             <h4 class="text-primary text-uppercase mb-4">Linki</h4>
-                            @await Html.PartialAsync("Footer")
+                            <div class="d-flex flex-column justify-content-start">
+                                @await Html.PartialAsync("Footer", (IEnumerable<RestaurantSystem.Data.Data.CMS.Page>) ViewBag.ModelPage)
+                            </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                             <h4 class="text-primary text-uppercase mb-4">Newsletter</h4>

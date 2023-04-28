@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
+using RestaurantSystem.Data.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
@@ -48,7 +49,7 @@ namespace RestaurantSystem.Administracja.Controllers
         // GET: HeroPartials/Create
         public IActionResult Create()
         {
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id");
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Hero), "Id", "Name");
             return View();
         }
 
@@ -59,13 +60,22 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,SubTitle,Content,PhotoName,HeroButtonName,HeroButtonUrl,VideoTitle,VideoModalTitle,PartialId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] HeroPartial heroPartial)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(heroPartial);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                PartialValidator.ValidatePartialForNewItem(_context, heroPartial.PartialId);
+                if (ModelState.IsValid)
+                {
+                    _context.Add(heroPartial);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", heroPartial.PartialId);
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+            }
+
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Hero), "Id", "Name", heroPartial.PartialId);
             return View(heroPartial);
         }
 
@@ -82,7 +92,7 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 return NotFound();
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", heroPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Hero), "Id", "Name");
             return View(heroPartial);
         }
 
@@ -102,8 +112,10 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 try
                 {
+                    PartialValidator.ValidatePartialForNewItem(_context, heroPartial.PartialId);
                     _context.Update(heroPartial);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,9 +128,12 @@ namespace RestaurantSystem.Administracja.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                catch (ArgumentException ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+                }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", heroPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Hero), "Id", "Name");
             return View(heroPartial);
         }
 
@@ -155,14 +170,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.HeroPartial.Remove(heroPartial);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool HeroPartialExists(int id)
         {
-          return (_context.HeroPartial?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.HeroPartial?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

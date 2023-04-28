@@ -49,7 +49,7 @@ namespace RestaurantSystem.Administracja.Controllers
         // GET: ContactPartials/Create
         public IActionResult Create()
         {
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Name");
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Contact), "Id", "Name");
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Name", contactPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Contact), "Id", "Name", contactPartial.PartialId);
             return View(contactPartial);
         }
 
@@ -91,7 +91,7 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 return NotFound();
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Name", contactPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Contact), "Id", "Name", contactPartial.PartialId);
             return View(contactPartial);
         }
 
@@ -132,7 +132,7 @@ namespace RestaurantSystem.Administracja.Controllers
                     ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
                 }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Name", contactPartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Contact), "Id", "Name", contactPartial.PartialId);
             return View(contactPartial);
         }
 

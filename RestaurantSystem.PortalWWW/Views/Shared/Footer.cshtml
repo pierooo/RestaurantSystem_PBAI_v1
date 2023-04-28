@@ -1,3 +1,9 @@
-﻿<div class="d-flex flex-column justify-content-start">
-    <a class="text-secondary mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Menu w stopce</a>
-</div>
+﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.Page>;
+
+@if (Model is not null)
+{
+    @foreach (var item in Model)
+    {
+        <a class="text-secondary mb-2" href="@Url.Action("Index", "Home", new { id = item.Id })"><i class="bi bi-arrow-right text-primary me-2"></i>@item.LinkTitle</a>
+    }
+}

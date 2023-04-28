@@ -1,8 +1,10 @@
-﻿using System.Diagnostics;
+﻿#nullable enable
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
+using RestaurantSystem.Data.Helpers;
 using RestaurantSystem.PortalWWW.Models;
 
 namespace RestaurantSystem.PortalWWW.Controllers
@@ -20,9 +22,10 @@ namespace RestaurantSystem.PortalWWW.Controllers
 
         public async Task<IActionResult> Index(int? id)
         {
-            ViewBag.ModelCompany = await context.Company.SingleOrDefaultAsync(x => x.IsActive);
-            ViewBag.ModelLayoutEvents = await context.Partial.Include(p => p.CurrentEventPartials).FirstOrDefaultAsync(x => x.IsForMainPage == true) ?? new Partial();
-            ViewBag.ModelPage = await context.Page.Where(x => x.IsActive).OrderBy(x => x.Position).ToListAsync();
+            ViewBag.ModelCompany = await context.Company?.SingleOrDefaultAsync(x => x.IsActive);
+            ViewBag.ModelPage = await context.Page?.Where(x => x.IsActive)?.OrderBy(x => x.Position)?.ToListAsync();
+            var partialWithEventForLayout = await context.Partial.Include(p => p.CurrentEventPartials).FirstOrDefaultAsync(x => x.PartialType == PartialTypes.LayoutEvents && x.IsActive == true);
+            ViewBag.ModelLayoutEvents = partialWithEventForLayout?.CurrentEventPartials.OrderBy(x => x.EventDate).ToList();
 
             if (id == null)
             {
@@ -51,6 +54,8 @@ namespace RestaurantSystem.PortalWWW.Controllers
                     .ThenInclude(pt => pt.ServicePartials)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
+            page.Partials.RemoveAll(x => x.PartialType == PartialTypes.LayoutEvents);
+
             page = new Page()
             {
                 Content = page.Content,
@@ -64,8 +69,7 @@ namespace RestaurantSystem.PortalWWW.Controllers
                 Position = page.Position,
                 Id = page.Id,
                 UpdatedById = page.UpdatedById,
-                Partials = page.Partials?.OrderBy(x => x.Position).ToList()
-
+                Partials = page.Partials.OrderBy(x => x.Position).ToList()
             };
 
             return View(page);
