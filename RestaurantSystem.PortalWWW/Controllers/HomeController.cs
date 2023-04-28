@@ -22,7 +22,7 @@ namespace RestaurantSystem.PortalWWW.Controllers
 
         public async Task<IActionResult> Index(int? id)
         {
-            ViewBag.ModelCompany = await context.Company?.SingleOrDefaultAsync(x => x.IsActive);
+            ViewBag.ModelCompany = await context.Company?.SingleOrDefaultAsync(x => x.IsActive) ?? new Company();
             ViewBag.ModelPage = await context.Page?.Where(x => x.IsActive)?.OrderBy(x => x.Position)?.ToListAsync();
             var partialWithEventForLayout = await context.Partial.Include(p => p.CurrentEventPartials).FirstOrDefaultAsync(x => x.PartialType == PartialTypes.LayoutEvents && x.IsActive == true);
             ViewBag.ModelLayoutEvents = partialWithEventForLayout?.CurrentEventPartials.OrderBy(x => x.EventDate).ToList();
