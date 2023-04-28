@@ -65,7 +65,10 @@ namespace RestaurantSystem.Administracja.Controllers
         {
             try
             {
-                CommonValidator.AssertLayoutPartial(_context, @partial.IsActive);
+                if(partial.PartialType == PartialTypes.LayoutEvents)
+                {
+                    CommonValidator.AssertLayoutPartial(_context, @partial.IsActive);
+                }
 
                 if (ModelState.IsValid)
                 {

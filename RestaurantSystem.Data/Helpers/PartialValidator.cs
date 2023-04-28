@@ -26,7 +26,7 @@ public class PartialValidator
                 ValidatePartialItemsCount(context.FactPartial?.Where(x => x.PartialId == partialId).Count(), PartialTypes.Fact);
                 break;
             case (PartialTypes.Hero):
-                ValidatePartialItemsCount(context.FactPartial?.Where(x => x.PartialId == partialId).Count(), PartialTypes.Hero);
+                ValidatePartialItemsCount(context.HeroPartial?.Where(x => x.PartialId == partialId).Count(), PartialTypes.Hero);
                 break;
             case (PartialTypes.Opinion):
                 ValidatePartialItemsCount(context.OpinionPartial?.Where(x => x.PartialId == partialId).Count(), PartialTypes.Opinion);

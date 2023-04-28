@@ -21,7 +21,7 @@ public class HeroPartial : EntityBase
     public string? HeroButtonUrl { get; set; }
     [Display(Name = "Tytuł wideo")]
     public string? VideoTitle { get; set; }
-    [Display(Name = "Tytuł okna wideo")]
+    [Display(Name = "Link wideo")]
     public string? VideoModalTitle { get; set; }
     [Display(Name = "Komponent")]
     public int PartialId { get; set; }

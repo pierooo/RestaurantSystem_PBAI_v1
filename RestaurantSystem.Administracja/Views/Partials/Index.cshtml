@@ -1,4 +1,5 @@
-﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.Partial>
+﻿@using RestaurantSystem.Data.Helpers
+@model IEnumerable<RestaurantSystem.Data.Data.CMS.Partial>
 
 @{
     ViewData["Title"] = "Komponenty";
@@ -49,7 +50,7 @@
                 @Html.DisplayFor(modelItem => item.SubTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PartialType)
+                @PartialTypes.GetPolishType(item.PartialType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Position)

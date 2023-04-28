@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.ServicePartial>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Boxy";
 }
 
-<h1>Index</h1>
+<h1>Boxy dla komponentu z trzema boxami</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj</a>
 </p>
 <table class="table">
     <thead>
@@ -19,24 +19,6 @@
                 @Html.DisplayNameFor(model => model.SubTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventInfo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FacebookLink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LinkedinLink)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Partial)
             </th>
             <th>
@@ -46,44 +28,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventInfo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacebookLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LinkedinLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Partial.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Partial.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

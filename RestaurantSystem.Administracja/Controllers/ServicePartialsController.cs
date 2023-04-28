@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
+using RestaurantSystem.Data.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
@@ -48,7 +49,7 @@ namespace RestaurantSystem.Administracja.Controllers
         // GET: ServicePartials/Create
         public IActionResult Create()
         {
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id");
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Service), "Id", "Name");
             return View();
         }
 
@@ -59,13 +60,22 @@ namespace RestaurantSystem.Administracja.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Title,SubTitle,Content,PhotoName,EventDate,EventInfo,FacebookLink,LinkedinLink,PartialId,Id,IsActive,CreatedAt,UpdatedAt,UpdatedById")] ServicePartial servicePartial)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(servicePartial);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                PartialValidator.ValidatePartialForNewItem(_context, servicePartial.PartialId);
+                if (ModelState.IsValid)
+                {
+                    _context.Add(servicePartial);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", servicePartial.PartialId);
+            catch (ArgumentException ex)
+            {
+                ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+            }
+
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Service), "Id", "Name", servicePartial.PartialId);
             return View(servicePartial);
         }
 
@@ -82,7 +92,7 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 return NotFound();
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", servicePartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Service), "Id", "Name", servicePartial.PartialId);
             return View(servicePartial);
         }
 
@@ -102,8 +112,10 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 try
                 {
+                    PartialValidator.ValidatePartialForNewItem(_context, servicePartial.PartialId);
                     _context.Update(servicePartial);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,9 +128,12 @@ namespace RestaurantSystem.Administracja.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                catch (ArgumentException ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+                }
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", servicePartial.PartialId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.Service), "Id", "Name", servicePartial.PartialId);
             return View(servicePartial);
         }
 
@@ -155,14 +170,14 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 _context.ServicePartial.Remove(servicePartial);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ServicePartialExists(int id)
         {
-          return (_context.ServicePartial?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.ServicePartial?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

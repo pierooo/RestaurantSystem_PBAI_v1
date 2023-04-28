@@ -6,11 +6,11 @@ namespace RestaurantSystem.Data.Data.CMS;
 
 public class ServicePartial : EntityBase
 {
-    [Display(Name = "Podaj jeśli widok tego wymaga")]
+    [Display(Name = "Tytuł")]
     [MaxLength(50, ErrorMessage = "Tytuł może zawierać max 50 znaków")]
     public string? Title { get; set; }
-    [Display(Name = "Podaj jeśli widok tego wymaga")]
-    [MaxLength(150, ErrorMessage = "Sub tytuł może zawierać max 150 znaków")]
+    [Display(Name = "Treść")]
+    [MaxLength(250, ErrorMessage = "Sub tytuł może zawierać max 150 znaków")]
     public string? SubTitle { get; set; }
     [Display(Name = "Podaj jeśli widok tego wymaga")]
     public string? Content { get; set; }

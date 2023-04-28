@@ -2,247 +2,79 @@
 @using RestaurantSystem.Data.Helpers
 @model RestaurantSystem.Data.Data.CMS.Page
 
-@if (Model is not null)
+@if (Model is not null && Model.Partials.Any())
 {
-    @*<!-- Hero Start -->
-@if (Model.Partials.Any(x => x.PartialType == PartialTypes.Hero))
-{
-    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
-        <div class="container py-5">
-            <div class="row justify-content-start">
-                <div class="col-lg-8 text-center text-lg-start">
-                    <h1 class="font-secondary text-primary mb-4">Restauracja z miłości</h1>
-                    <h1 class="display-1 text-uppercase text-white mb-4">Piotrunio</h1>
-                    <h1 class="text-uppercase text-white">Najlepsze miejsce w mieście</h1>
-                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
-                        <a href="" class="btn btn-primary border-inner py-3 px-5 me-5">Złóż zamówienie</a>
-                        <button type="button" class="btn-play" data-bs-toggle="modal"
-                            data-src="https://www.youtube.com/embed/WNeLUngb-Xg" data-bs-target="#videoModal">
-                            <span></span>
-                        </button>
-                        <h5 class="font-weight-normal text-white m-0 ms-4 d-none d-sm-block">Zobacz jak pracujemy</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Video Modal Start -->
-    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- 16:9 aspect ratio -->
-                    <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
-                            allow="autoplay"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Video Modal End -->
-}
-<!-- Hero End -->*@
-    <!-- About Start -->
-    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.About && x.PageId == Model.Id) ?? new List<Partial>())
+    foreach (var partial in Model.Partials.Where(x => x.IsActive == true).OrderBy(x => x.Position))
     {
-        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-            <h2 class="text-primary font-secondary">@partial.Title</h2>
-            <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
-        </div>
-        @await Html.PartialAsync("AboutUs", (IEnumerable<RestaurantSystem.Data.Data.CMS.AboutPartial>) partial.AboutPartials )
+        switch (partial.PartialType)
+        {
+            case (PartialTypes.Hero):
+                {
+                    @await Html.PartialAsync("Hero", (IEnumerable<RestaurantSystem.Data.Data.CMS.HeroPartial>) partial.HeroPartials )
+                    break;
+                }
+            case (PartialTypes.About):
+                {
+                    <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                        <h2 class="text-primary font-secondary">@partial.Title</h2>
+                        <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
+                    </div>
+                    @await Html.PartialAsync("AboutUs", (IEnumerable<RestaurantSystem.Data.Data.CMS.AboutPartial>) partial.AboutPartials )
+                    break;
+                }
+            case (PartialTypes.Contact):
+                {
+                    <div class="container-fluid contact position-relative px-5" style="margin-top: 90px;">
+                        <div class="container">
+                            @await Html.PartialAsync("Contact", (IEnumerable<RestaurantSystem.Data.Data.CMS.ContactPartial>) partial.ContactPartials )
+                        </div>
+                    </div>
+                    break;
+                }
+            case (PartialTypes.Service):
+                {
+                    <div class="container-fluid service position-relative px-5 mt-5" style="margin-bottom: 135px;">
+                        <div class="container">
+                            <div class="row g-5">
+                                @await Html.PartialAsync("Service", (IEnumerable<RestaurantSystem.Data.Data.CMS.ServicePartial>) partial.ServicePartials)
+                                <div class="col-lg-12 col-md-6 text-center">
+                                    <h1 class="text-uppercase text-light mb-4">@partial.Title</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    break;
+                }
+            case (PartialTypes.CurrentEvent):
+                {
+                    <div class="container-fluid py-5">
+                        <div class="container">
+                            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                                <h2 class="text-primary font-secondary">@partial.Title</h2>
+                                <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
+                            </div>
+                            <div class="row g-5">
+                                @await Html.PartialAsync("CurrentEvents", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentEventPartial>) partial.CurrentEventPartials )
+                            </div>
+                        </div>
+                    </div>
+                    break;
+                }
+            case (PartialTypes.CurrentMenu):
+                {
+                    <div class="container-fluid about py-5">
+                        <div class="container">
+                            <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                                <h2 class="text-primary font-secondary">@partial.Title</h2>
+                                <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
+                            </div>
+                            <div class="tab-class text-center">
+                                @await Html.PartialAsync("CurrentMenu", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentMenuPartial>) partial.CurrentMenuPartials)
+                            </div>
+                        </div>
+                    </div>
+                    break;
+                }
+        }
     }
-
-    <!-- About End -->
-    <!-- Contact Start -->
-    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Contact && x.PageId == Model.Id) ?? new List<Partial>())
-    {
-        <div class="container-fluid contact position-relative px-5" style="margin-top: 90px;">
-            <div class="container">
-                @await Html.PartialAsync("Contact", (IEnumerable<RestaurantSystem.Data.Data.CMS.ContactPartial>) partial.ContactPartials )
-            </div>
-        </div>
-    }
-    <!-- Contact End -->
-    <!-- Current Events Start -->
-    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.CurrentEvent && x.PageId == Model.Id) ?? new List<Partial>())
-    {
-        <!-- Events Start -->
-        <div class="container-fluid py-5">
-            <div class="container">
-                <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                    <h2 class="text-primary font-secondary">@partial.Title</h2>
-                    <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
-                </div>
-                <div class="row g-5">
-                    @await Html.PartialAsync("CurrentEvents", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentEventPartial>) partial.CurrentEventPartials )
-                </div>
-            </div>
-        </div>
-    }
-
-    <!-- Current Events End -->
-    <!-- Service Start -->
-    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.Service) ?? new List<Partial>())
-    {
-        <div class="container-fluid service position-relative px-5 mt-5" style="margin-bottom: 135px;">
-            <div class="container">
-                <div class="row g-5">
-                    @await Html.PartialAsync("Service", ((IEnumerable<RestaurantSystem.Data.Data.CMS.ServicePartial>) ViewBag.ModelServices).Where(x => x.PartialId == partial.Id))
-                    <div class="col-lg-12 col-md-6 text-center">
-                        <h1 class="text-uppercase text-light mb-4">@partial.Title</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-
-
-    <!-- Service End -->
-    <!-- Current menu Start -->
-    @foreach (var partial in Model.Partials.Where(x => x.PartialType == PartialTypes.CurrentMenu && x.PageId == Model.Id) ?? new List<Partial>())
-    {
-        <div class="container-fluid about py-5">
-            <div class="container">
-                <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-                    <h2 class="text-primary font-secondary">@partial.Title</h2>
-                    <h1 class="display-4 text-uppercase">@partial.SubTitle</h1>
-                </div>
-                <div class="tab-class text-center">
-                    @await Html.PartialAsync("CurrentMenu", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentMenuPartial>) partial.CurrentMenuPartials)
-                </div>
-            </div>
-        </div>
-    }
-
-
-    <!-- Current menu End -->
-    <!-- facts Start -->
-    @*<div class="container-fluid bg-img py-5 mb-5">
-    <div class="container py-5">
-        <div class="row gx-5 gy-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="d-flex">
-                    <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <i class="fa fa-star text-white"></i>
-                    </div>
-                    <div class="ps-4">
-                        <h6 class="text-primary text-uppercase">Zrealizowane zamówienia</h6>
-                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="d-flex">
-                    <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <i class="fa fa-users text-white"></i>
-                    </div>
-                    <div class="ps-4">
-                        <h6 class="text-primary text-uppercase">Przygotowanych dań</h6>
-                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="d-flex">
-                    <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <i class="fa fa-check text-white"></i>
-                    </div>
-                    <div class="ps-4">
-                        <h6 class="text-primary text-uppercase">Zadowoleni klienci</h6>
-                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="d-flex">
-                    <div class="bg-primary border-inner d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <i class="fa fa-mug-hot text-white"></i>
-                    </div>
-                    <div class="ps-4">
-                        <h6 class="text-primary text-uppercase">Dni spędzonych w naszej kuchni</h6>
-                        <h1 class="display-5 text-white mb-0" data-toggle="counter-up">12345</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- facts End -->
-<!-- Opinie Start -->
-<div class="container-fluid py-5">
-    <div class="container">
-        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-            <h2 class="text-primary font-secondary">Nasi klienci potwierdzają!!!</h2>
-        </div>
-        <div class="owl-carousel testimonial-carousel">
-            <div class="testimonial-item bg-dark text-white border-inner p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <img class="img-fluid flex-shrink-0" src="~/lib/img/testimonial-1.jpg" style="width: 60px; height: 60px;">
-                    <div class="ps-3">
-                        <h4 class="text-primary text-uppercase mb-1">Imie klienta</h4>
-                        <span>Profession</span>
-                    </div>
-                </div>
-                <p class="mb-0">
-                    Opinia jakie pyszne są dania
-                </p>
-            </div>
-            <div class="testimonial-item bg-dark text-white border-inner p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <img class="img-fluid flex-shrink-0" src="~/lib/img/testimonial-1.jpg" style="width: 60px; height: 60px;">
-                    <div class="ps-3">
-                        <h4 class="text-primary text-uppercase mb-1">Imie klienta</h4>
-                        <span>Data odwiedzin</span>
-                    </div>
-                </div>
-                <p class="mb-0">
-                    Opinia jakie pyszne są dania
-                </p>
-            </div>
-            <div class="testimonial-item bg-dark text-white border-inner p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <img class="img-fluid flex-shrink-0" src="~/lib/img/testimonial-1.jpg" style="width: 60px; height: 60px;">
-                    <div class="ps-3">
-                        <h4 class="text-primary text-uppercase mb-1">Imie klienta</h4>
-                        <span>Data odwiedzin</span>
-                    </div>
-                </div>
-                <p class="mb-0">
-                    Opinia jakie pyszne są dania
-                </p>
-            </div>
-            <div class="testimonial-item bg-dark text-white border-inner p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <img class="img-fluid flex-shrink-0" src="~/lib/img/testimonial-1.jpg" style="width: 60px; height: 60px;">
-                    <div class="ps-3">
-                        <h4 class="text-primary text-uppercase mb-1">Imie klienta</h4>
-                        <span>Data odwiedzin</span>
-                    </div>
-                </div>
-                <p class="mb-0">
-                    Opinia jakie pyszne są dania
-                </p>
-            </div>
-            <div class="testimonial-item bg-dark text-white border-inner p-4">
-                <div class="d-flex align-items-center mb-3">
-                    <img class="img-fluid flex-shrink-0" src="~/lib/img/testimonial-1.jpg" style="width: 60px; height: 60px;">
-                    <div class="ps-3">
-                        <h4 class="text-primary text-uppercase mb-1">Imie klienta</h4>
-                        <span>Data odwiedzin</span>
-                    </div>
-                </div>
-                <p class="mb-0">
-                    Opinia jakie pyszne są dania
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Opinie End -->*@
 }
