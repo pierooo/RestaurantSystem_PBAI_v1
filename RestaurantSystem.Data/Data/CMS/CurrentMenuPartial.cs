@@ -6,7 +6,7 @@ namespace RestaurantSystem.Data.Data.CMS;
 
 public class CurrentMenuPartial : EntityBase
 {
-    [Display(Name = "Podaj jeśli widok tego wymaga")]
+    [Display(Name = "Nazwa")]
     [MaxLength(50, ErrorMessage = "Tytuł może zawierać max 50 znaków")]
     public string? Title { get; set; }
     [Display(Name = "Podaj jeśli widok tego wymaga")]
@@ -14,9 +14,12 @@ public class CurrentMenuPartial : EntityBase
     public string? SubTitle { get; set; }
     [Display(Name = "Podaj jeśli widok tego wymaga")]
     public string? Content { get; set; }
+    [Display(Name = "Pozycja menu")]
     public int ProductId { get; set; }
+    [Display(Name = "Pozycja menu")]
     public Product? Product { get; set; }
     [Display(Name = "Komponent")]
     public int PartialId { get; set; }
+    [Display(Name = "Komponent")]
     public Partial? Partial { get; set; }
 }

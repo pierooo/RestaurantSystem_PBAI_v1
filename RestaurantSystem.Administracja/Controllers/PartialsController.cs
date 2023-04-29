@@ -126,6 +126,11 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 try
                 {
+                    if (partial.PartialType == PartialTypes.LayoutEvents)
+                    {
+                        CommonValidator.AssertLayoutPartial(_context, @partial.IsActive, partial.Id);
+                    }
+
                     _context.Update(@partial);
                     await _context.SaveChangesAsync();
                 }
@@ -139,6 +144,11 @@ namespace RestaurantSystem.Administracja.Controllers
                     {
                         throw;
                     }
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas dodawania elementu: " + ex.Message);
+
                 }
                 return RedirectToAction(nameof(Index));
             }

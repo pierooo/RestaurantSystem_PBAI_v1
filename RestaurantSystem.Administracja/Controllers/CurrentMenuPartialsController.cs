@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestaurantSystem.Data.Data;
 using RestaurantSystem.Data.Data.CMS;
+using RestaurantSystem.Data.Helpers;
 
 namespace RestaurantSystem.Administracja.Controllers
 {
@@ -49,8 +50,8 @@ namespace RestaurantSystem.Administracja.Controllers
         // GET: CurrentMenuPartials/Create
         public IActionResult Create()
         {
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id");
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id");
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.CurrentMenu), "Id", "Name");
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name");
             return View();
         }
 
@@ -67,8 +68,8 @@ namespace RestaurantSystem.Administracja.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", currentMenuPartial.PartialId);
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", currentMenuPartial.ProductId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.CurrentMenu), "Id", "Name", currentMenuPartial.PartialId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name", currentMenuPartial.ProductId);
             return View(currentMenuPartial);
         }
 
@@ -85,8 +86,8 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 return NotFound();
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", currentMenuPartial.PartialId);
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", currentMenuPartial.ProductId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.CurrentMenu), "Id", "Name", currentMenuPartial.PartialId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name", currentMenuPartial.ProductId);
             return View(currentMenuPartial);
         }
 
@@ -122,8 +123,8 @@ namespace RestaurantSystem.Administracja.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PartialId"] = new SelectList(_context.Partial, "Id", "Id", currentMenuPartial.PartialId);
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", currentMenuPartial.ProductId);
+            ViewData["PartialId"] = new SelectList(_context.Partial.Where(x => x.PartialType == PartialTypes.CurrentMenu), "Id", "Name", currentMenuPartial.PartialId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name", currentMenuPartial.ProductId);
             return View(currentMenuPartial);
         }
 

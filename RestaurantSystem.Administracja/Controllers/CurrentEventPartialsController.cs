@@ -111,7 +111,6 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 try
                 {
-                    PartialValidator.ValidatePartialForNewItem(_context, currentEventPartial.PartialId);
                     _context.Update(currentEventPartial);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));

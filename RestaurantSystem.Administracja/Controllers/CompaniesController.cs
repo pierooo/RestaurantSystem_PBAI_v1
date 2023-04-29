@@ -111,7 +111,7 @@ namespace RestaurantSystem.Administracja.Controllers
             {
                 try
                 {
-                    CommonValidator.AssertCompanyState(_context, company.IsActive);
+                    CommonValidator.AssertCompanyState(_context, company.IsActive, company.Id);
                     _context.Update(company);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
