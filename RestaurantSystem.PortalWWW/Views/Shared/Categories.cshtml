@@ -1,0 +1,11 @@
+﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.Category>;
+
+@if (Model is not null)
+{
+    @foreach (var item in Model)
+    {
+        <a class="nav-item nav-link" href="@Url.Action("Index", "TakeAway", new { id = item.Id })">@item.Name</a>
+    }
+    <a class="nav-item nav-link" href="@Url.Action("Index", "Home")">Wróć do strony głównej</a>
+
+}

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title> @ViewBag.ModelCompany.WebsiteTitlePart - Firma </title>
+    <title> @ViewBag.ModelCompany.WebsiteTitlePart - Zamówienia </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -28,6 +28,23 @@
 
     <!-- Template Stylesheet -->
     <link href="~/lib/css/style.css" rel="stylesheet">
+
+    <style>
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .button-container .btn {
+        margin-bottom: 5px;
+    }
+</style>
+
+<style>
+    
+    }
+</style>
 </head>
 
 <body>
@@ -70,23 +87,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
-                @await Html.PartialAsync("Navigation", (IEnumerable<RestaurantSystem.Data.Data.CMS.Page>) ViewBag.ModelPage)
+
+                @await Html.PartialAsync("Categories", (IEnumerable<RestaurantSystem.Data.Data.CMS.Category>) ViewBag.Category)
+
             </div>
         </div>
+
+
     </nav>
     <!-- Navbar End -->
     <!-- Body Start -->
     @RenderBody()
     <!-- Body End -->
-    <!-- Current Events Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                @await Html.PartialAsync("CurrentEvents", (IEnumerable<RestaurantSystem.Data.Data.CMS.CurrentEventPartial>) ViewBag.ModelLayoutEvents)
-            </div>
-        </div>
-    </div>
-    <!-- Current Events End -->
     <!-- Footer Start -->
     <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">
         <div class="container">

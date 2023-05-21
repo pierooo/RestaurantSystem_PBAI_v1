@@ -54,7 +54,7 @@ namespace RestaurantSystem.PortalWWW.Controllers
                     .ThenInclude(pt => pt.ServicePartials)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            page.Partials.RemoveAll(x => x.PartialType == PartialTypes.LayoutEvents);
+            page?.Partials?.RemoveAll(x => x.PartialType == PartialTypes.LayoutEvents);
 
             page = new Page()
             {
@@ -69,7 +69,7 @@ namespace RestaurantSystem.PortalWWW.Controllers
                 Position = page.Position,
                 Id = page.Id,
                 UpdatedById = page.UpdatedById,
-                Partials = page.Partials.OrderBy(x => x.Position).ToList()
+                Partials = page?.Partials?.OrderBy(x => x.Position).ToList()
             };
 
             return View(page);

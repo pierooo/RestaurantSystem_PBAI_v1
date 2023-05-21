@@ -1,0 +1,40 @@
+﻿@model RestaurantSystem.Data.Data.CMS.Product
+
+@{
+    Layout = "~/Views/Shared/_TakeAwayLayout.cshtml";
+}
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+        </div>
+        <div class="row g-5">
+            <div class="container-fluid py-5">
+                <div class="container">
+                    <div class="tab-class text-center">
+                        <div class="tab-content">
+                            <div class="d-flex h-100 justify-content-center">
+                                <div class="flex-shrink-0">
+                                    <img class="img-fluid rounded-circle" src="~/lib/img/@Model.PhotoName" alt="" style="width: 300px; height: 300px;">
+                                    <h4 class="bg-dark text-primary p-3 m-0">@string.Format("{0:F2}", Model.UnitPriceGross) zł</h4>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-6 container-fluid w-75">
+                                    <h3 class="text-uppercase mb-3">@Model.Name</h3>
+                                    <p class="mb-3">@Model.Description</p>
+                                    <h5 class="text-uppercase">Kategoria: @Model.Category.Name</h5>
+                                    <p class="mb-3">Składniki: @Model.Ingredients</p>
+                                    <h5 class="text-uppercase">VAT: @Model.VAT %</h5>
+                                    <p class="mb-3">Alergeny: @Model.Allergens</p>
+                                </div>
+                                <div class="ml-auto">
+                                    <a href="#" class="btn btn-success btn-lg">Dodaj do koszyka</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
