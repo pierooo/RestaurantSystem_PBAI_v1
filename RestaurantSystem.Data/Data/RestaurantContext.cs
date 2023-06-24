@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RestaurantSystem.Data.Data.Sklep;
 
 namespace RestaurantSystem.Data.Data;
 
@@ -36,4 +37,6 @@ public class RestaurantContext : DbContext
     public DbSet<RestaurantSystem.Data.Data.CMS.Company>? Company { get; set; }
 
     public DbSet<RestaurantSystem.Data.Data.CMS.Partial>? Partial { get; set; }
+
+    public DbSet<CartItem> CartItem { get; set; }
 }

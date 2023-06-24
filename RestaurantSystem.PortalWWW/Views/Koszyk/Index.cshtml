@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RestaurantSystem.Data.Data.CMS.Product>;
+﻿@model RestaurantSystem.PortalWWW.Models.Sklep.DaneDoKoszyka;
 
 @{
     Layout = "~/Views/Shared/_TakeAwayLayout.cshtml";
@@ -8,11 +8,11 @@
 <div class="container-fluid about py-5">
     <div class="container">
         <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-            <h2 class="text-primary font-secondary">Menu</h2>
+            <h2 class="text-primary font-secondary">Twoje zamówienia</h2>
         </div>
         <div class="tab-class text-center">
             <div class="tab-content">
-                @foreach (var product in @Model)
+                @foreach (var cartItem in @Model.ElementyKoszyka)
                 {
                     @if (i % 2 == 0)
                     {
@@ -21,26 +21,26 @@
                     <div class="col-lg-6">
                         <div class="d-flex h-100 product-container">
                             <div class="flex-shrink-0">
-                                <img class="img-fluid" src="~/lib/img/@product.PhotoName" alt="" style="width: 150px; height: 85px;">
-                                <h4 class="bg-dark text-primary p-2 m-0">@string.Format("{0:F2}", product.UnitPriceGross) zł</h4>
+                                <img class="img-fluid" src="~/lib/img/@cartItem.Product.PhotoName" alt="" style="width: 150px; height: 85px;">
+                                <h4 class="bg-dark text-primary p-2 m-0">@string.Format("{0:F2}", cartItem.Product.UnitPriceGross * cartItem.Quantity) zł</h4>
                             </div>
                             <div class="d-flex flex-column justify-content-center text-start bg-secondary border-inner px-4">
-                                <h5 class="text-uppercase">@product.Name</h5>
-                                <span class="" style="max-width: 200px;">@product.Description</span>
-                            </div>
-                            <div class="ml-auto button-container">
-                                <a href="@Url.Action("Details", "TakeAway", new {id = product.Id})" class="btn btn-primary btn-sm">Szczegóły</a>
-                                <a href="@Url.Action("DodajDoKoszyka", "Koszyk", new {id = product.Id})" class="btn btn-primary btn-sm">Dodaj do koszyka</a>
+                                <h5 class="text-uppercase">@cartItem.Product.Name</h5>
+                                <span class="" style="max-width: 200px;">Cena za sztukę: @cartItem.Product.UnitPriceGross</span>
+                                <span class="" style="max-width: 200px;"><h4>Ilość: @cartItem.Quantity</h4> </span>
                             </div>
                         </div>
                     </div>
-                    @if (i % 2 == 1 || i == @Model.Count() - 1)
+                    @if (i % 2 == 1 || i == @Model.ElementyKoszyka.Count() - 1)
                     {
                         @Html.Raw("</div>")
                         <br>
                     }
                     i++;
                 }
+                <div class="ml-auto button-container">
+                    <h4 class="bg-dark text-primary p-2 m-0">Łączna kwota: @string.Format("{0:F2}", @Model.Razem) zł</h4>
+                </div>
             </div>
         </div>
     </div>
